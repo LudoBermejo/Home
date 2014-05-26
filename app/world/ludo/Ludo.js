@@ -6,6 +6,9 @@ define(["preloadjs", "collisionDetection"], function () {
         var st;
         var w;
         var h;
+
+        var wLudo = 32;
+        var hLudo = 48;
         var spriteLudo;
 
         var loader;
@@ -14,7 +17,11 @@ define(["preloadjs", "collisionDetection"], function () {
         var hasMoveDown;
         var hasMoveUp;
 
-        var speed = 15;
+        var getCollision;
+
+        var speed = 5;
+        var tileSizeWidth = 32;
+        var tileSizeHeight = 32;
 
         var KEYCODE_UP = 38;		//usefull keycode
         var KEYCODE_DOWN = 40;		//usefull keycode
@@ -36,16 +43,20 @@ define(["preloadjs", "collisionDetection"], function () {
                 switch (e.keyCode) {
                     case KEYCODE_UP:
                     case KEYCODE_S:
-                        hasMoveUp = true; break;
+                        hasMoveUp = true;
+                        break;
                     case KEYCODE_DOWN:
                     case KEYCODE_A:
-                        hasMoveDown = true;break;
+                        hasMoveDown = true;
+                        break;
                     case KEYCODE_LEFT:
                     case KEYCODE_D:
-                        hasMoveLeft = true;break;
+                        hasMoveLeft = true;
+                        break;
                     case KEYCODE_RIGHT:
                     case KEYCODE_W:
-                        hasMoveRight = true;break;
+                        hasMoveRight = true;
+                        break;
 
                     default:
                         console.log("NONE")
@@ -59,16 +70,20 @@ define(["preloadjs", "collisionDetection"], function () {
                 switch (e.keyCode) {
                     case KEYCODE_UP:
                     case KEYCODE_S:
-                        hasMoveUp = false;break;
+                        hasMoveUp = false;
+                        break;
                     case KEYCODE_DOWN:
                     case KEYCODE_A:
-                        hasMoveDown = false;break;
+                        hasMoveDown = false;
+                        break;
                     case KEYCODE_LEFT:
                     case KEYCODE_D:
-                        hasMoveLeft = false;break;
+                        hasMoveLeft = false;
+                        break;
                     case KEYCODE_RIGHT:
                     case KEYCODE_W:
-                        hasMoveRight = false;break;
+                        hasMoveRight = false;
+                        break;
 
                     default:
                         console.log("NONE")
@@ -83,29 +98,26 @@ define(["preloadjs", "collisionDetection"], function () {
         var createSprite = function () {
             var data = {
                 images: [loader.getResult("Ludo")],
-                frames: {width: 32, height: 48},
+                frames: {width: wLudo, height: hLudo},
                 animations: {stop: [0], down: [0, 3], left: [4, 7], right: [8, 11], up: [12, 15]}
             };
             var spriteSheetLudo = new createjs.SpriteSheet(data);
 
-
             spriteLudo = new createjs.Sprite(spriteSheetLudo, "stop");
             spriteLudo.x = 0;
-            spriteLudo.y = 0 ;
+            spriteLudo.y = 0;
             spriteLudo.framerate = 5;
 
 
-
             st.addChild(spriteLudo);
-            console.log(st);
         }
 
 
-
-        Ludo.init = function (stage, load) {
+        Ludo.init = function (stage, load, gc) {
 
             st = stage;
             loader = load;
+            getCollision = gc;
 
             // grab canvas width and height for later calculations:
             w = stage.canvas.width;
@@ -117,35 +129,69 @@ define(["preloadjs", "collisionDetection"], function () {
 
         }
 
+        function getCurrentPosition(x, y) {
 
-        Ludo.movement = function() {
+            if (x == null) x = spriteLudo.x;
+            if (y == null) y = spriteLudo.y;
+
+
+
+            var obj = {
+
+                x: Math.floor(( x + wLudo / 2) / tileSizeWidth),
+                y: Math.floor(( y + hLudo / 2 ) / tileSizeHeight)
+
+            };
+
+            console.log(obj)
+
+            return obj;
+
+        }
+
+
+        Ludo.movement = function () {
 
 
             if (hasMoveUp) {
-                if(spriteLudo.currentAnimation != "up")
-                    spriteLudo.gotoAndPlay("up",1);
-                spriteLudo.y -= speed
+                if (spriteLudo.currentAnimation != "up")
+                    spriteLudo.gotoAndPlay("up", 1);
+
+                var currentPosition = getCurrentPosition();
+
+                if (!getCollision(getCurrentPosition(null, spriteLudo.y  - speed))) {
+                    spriteLudo.y -= speed
+                }
             }
             else if (hasMoveDown) {
-                if(spriteLudo.currentAnimation != "down")
-                    spriteLudo.gotoAndPlay("down",1);
-                spriteLudo.y += speed
+                if (spriteLudo.currentAnimation != "down")
+                    spriteLudo.gotoAndPlay("down", 1);
+
+                if (!getCollision(getCurrentPosition(null, spriteLudo.y + speed))) {
+                    spriteLudo.y += speed
+                }
             }
 
             if (hasMoveLeft) {
-                if(!hasMoveUp && !hasMoveDown)
-                    if(spriteLudo.currentAnimation != "left")
-                        spriteLudo.gotoAndPlay("left",1);
-                spriteLudo.x -= speed
+                if (!hasMoveUp && !hasMoveDown)
+                    if (spriteLudo.currentAnimation != "left")
+                        spriteLudo.gotoAndPlay("left", 1);
+
+                if (!getCollision(getCurrentPosition(spriteLudo.x - speed, null))) {
+                    spriteLudo.x -= speed
+                }
             }
             else if (hasMoveRight) {
-                if(!hasMoveUp && !hasMoveDown)
-                    if(spriteLudo.currentAnimation != "right")
-                        spriteLudo.gotoAndPlay("right",1);
-                spriteLudo.x += speed
+                if (!hasMoveUp && !hasMoveDown)
+                    if (spriteLudo.currentAnimation != "right")
+                        spriteLudo.gotoAndPlay("right", 1);
+
+                if (!getCollision(getCurrentPosition(spriteLudo.x + speed, null))) {
+                    spriteLudo.x += speed
+                }
             }
 
-            if(!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) spriteLudo.currentAnimationFrame = 0;
+            if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) spriteLudo.currentAnimationFrame = 0;
 
 
         }
@@ -153,4 +199,5 @@ define(["preloadjs", "collisionDetection"], function () {
 
         return Ludo;
     }
-);
+)
+;

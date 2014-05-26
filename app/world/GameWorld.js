@@ -14,7 +14,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map"], function (preload, Lud
             createjs.Ticker.addEventListener("tick", tick);
 
             Map.init(stage, loader);
-            Ludo.init(stage, loader);
+            Ludo.init(stage, loader, Map.getCollision);
 
 
 
