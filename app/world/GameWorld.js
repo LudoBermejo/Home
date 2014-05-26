@@ -16,19 +16,24 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map"], function (preload, Lud
             Map.init(stage, loader);
             Ludo.init(stage, loader, Map.getCollision);
 
-
+            stage.update();
 
         }
 
         function tick(event) {
             Ludo.movement();
-            stage.update(event);
+            //stage.update(event);
         }
 
         GameWorld.init = function () {
 
 
             stage = new createjs.Stage("worldCanvas");
+
+            stage.customUpdate = function()
+            {
+                stage.update();
+            }
 
 
             // grab canvas width and height for later calculations:

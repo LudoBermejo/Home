@@ -7,10 +7,12 @@ define(["preloadjs"], function () {
 
         var mapData;
 
+        var wTile;
+        var hTile;
 
         var background;
+        var arrayCollision = [];
 
-        var collision = new Array();
 
 
         Map.init = function (stage, load) {
@@ -21,6 +23,13 @@ define(["preloadjs"], function () {
 
 
                 var layer = new createjs.Container;
+
+                layer.name =layerData.name;
+
+                if(layerData.name.indexOf("Collision") >-1)
+                {
+                    arrayCollision.push(layer);
+                }
                 for ( var y = 0; y < layerData.height; y++) {
 
                     for ( var x = 0; x < layerData.width; x++) {
@@ -31,38 +40,23 @@ define(["preloadjs"], function () {
                         var idx = x + y * layerData.width;
                         // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
 
-                        cellBitmap.gotoAndStop(layerData.data[idx] - 1);
-                        // isometrix tile positioning based on X Y order from Tiled
-                        cellBitmap.x = x * tilewidth - (x);
+                        if(layerData.data[idx] - 1 > -1) {
+                            cellBitmap.gotoAndStop(layerData.data[idx] - 1);
+                            // isometrix tile positioning based on X Y order from Tiled
+                            cellBitmap.x = x * tilewidth - (x);
 
-                        cellBitmap.y = y * tileheight - (y);
+                            cellBitmap.y = y * tileheight - (y);
 
-                        //cellBitmap.setTransform(-1,-1)
-                        // add bitmap to stage
-                        layer.addChildAt(cellBitmap,0);
-
+                            //cellBitmap.setTransform(-1,-1)
+                            // add bitmap to stage
+                            layer.addChildAt(cellBitmap, 0);
+                        }
 
                         if(layerData.name.indexOf("Collision") >-1)
                         {
                             var text = new createjs.Text(x + ":" + y, "10px Arial", "#ff7700"); text.x =  x * tilewidth; text.y = y* tileheight;
+                            //layer.addChildAt(text, 0);
 
-                            if(layerData.data[idx]  != 0)
-                            {
-
-
-                                if(collision[x] == undefined)
-                                {
-                                    collision[x] = new Array();
-                                }
-
-                                collision[x][y] = true;
-
-                                console.log("Añdo en " + x + ":" + y)
-
-
-                            }
-
-                            layer.addChildAt(text, 0);
                         }
 
 
@@ -77,10 +71,29 @@ define(["preloadjs"], function () {
 
             }
 
-            this.getCollision = function(obj)
-            {
+            var checkIntersection = function(rect1,rect2) {
+                if ( rect1.x >= rect2.x + rect2.width || rect1.x + rect1.width <= rect2.x || rect1.y >= rect2.y + rect2.height || rect1.y + rect1.height <= rect2.y ) return false;
+                return true;
+            }
 
-                return (collision[obj.x][obj.y] !=  undefined);
+            this.getCollision = function(obj, x, y)
+            {
+                var rect1 = { x: obj.x+obj.width/2+x, y: obj.y+obj.height/2+y, width: 5, height: 5}
+               for(var i=0;i<=arrayCollision.length-1;i++){
+                   for(var j=0;j<=arrayCollision[i].getNumChildren()-1;j++)
+                   {
+                       var sprite = arrayCollision[i].getChildAt(j);
+                       var rect2 = { x: sprite.x, y: sprite.y, width: wTile, height: hTile}
+                       if(checkIntersection(rect1, rect2))
+                       {
+                           return true;
+                       }
+                   }
+               }
+
+
+                return false;
+                //return (collision[obj.x][obj.y] !=  undefined);
             }
 
 
@@ -90,14 +103,14 @@ define(["preloadjs"], function () {
             mapData = load.getResult("MapJSON");
 
             // compose EaselJS tileset from image (fixed 64x64 now, but can be parametized)
-            var w = mapData.tilesets[0].tilewidth;
-            var h = mapData.tilesets[0].tileheight;
+            wTile = mapData.tilesets[0].tilewidth;
+            hTile = mapData.tilesets[0].tileheight;
 
             var imageData = {
                 images : [ load.getResult("MapImage") ],
                 frames : {
-                    width : w+1,
-                    height : h+1
+                    width : wTile+1,
+                    height : hTile+1
                 }
             };
             // create spritesheet
@@ -111,6 +124,8 @@ define(["preloadjs"], function () {
             }
 
             st.addChild(background)
+
+            background.cache(0,0, mapData.tilewidth*mapData.width, mapData.tileheight*mapData.height)
 
         }
 

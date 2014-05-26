@@ -107,7 +107,8 @@ define(["preloadjs", "collisionDetection"], function () {
             spriteLudo.x = 0;
             spriteLudo.y = 0;
             spriteLudo.framerate = 5;
-
+            spriteLudo.width = wLudo;
+            spriteLudo.height = hLudo;
 
             st.addChild(spriteLudo);
         }
@@ -129,25 +130,9 @@ define(["preloadjs", "collisionDetection"], function () {
 
         }
 
-        function getCurrentPosition(x, y) {
-
-            if (x == null) x = spriteLudo.x;
-            if (y == null) y = spriteLudo.y;
 
 
 
-            var obj = {
-
-                x: Math.floor(( x + wLudo / 2) / tileSizeWidth),
-                y: Math.floor(( y + hLudo / 2 ) / tileSizeHeight)
-
-            };
-
-            console.log(obj)
-
-            return obj;
-
-        }
 
 
         Ludo.movement = function () {
@@ -157,18 +142,19 @@ define(["preloadjs", "collisionDetection"], function () {
                 if (spriteLudo.currentAnimation != "up")
                     spriteLudo.gotoAndPlay("up", 1);
 
-                var currentPosition = getCurrentPosition();
 
-                if (!getCollision(getCurrentPosition(null, spriteLudo.y  - speed))) {
+                if (!getCollision(spriteLudo,0,-speed)) {
                     spriteLudo.y -= speed
+                    st.customUpdate();
                 }
             }
             else if (hasMoveDown) {
                 if (spriteLudo.currentAnimation != "down")
                     spriteLudo.gotoAndPlay("down", 1);
 
-                if (!getCollision(getCurrentPosition(null, spriteLudo.y + speed))) {
+                if (!getCollision(spriteLudo,0, speed)) {
                     spriteLudo.y += speed
+                    st.customUpdate();
                 }
             }
 
@@ -177,8 +163,9 @@ define(["preloadjs", "collisionDetection"], function () {
                     if (spriteLudo.currentAnimation != "left")
                         spriteLudo.gotoAndPlay("left", 1);
 
-                if (!getCollision(getCurrentPosition(spriteLudo.x - speed, null))) {
+                if (!getCollision(spriteLudo,-speed,0)) {
                     spriteLudo.x -= speed
+                    st.customUpdate();
                 }
             }
             else if (hasMoveRight) {
@@ -186,8 +173,9 @@ define(["preloadjs", "collisionDetection"], function () {
                     if (spriteLudo.currentAnimation != "right")
                         spriteLudo.gotoAndPlay("right", 1);
 
-                if (!getCollision(getCurrentPosition(spriteLudo.x + speed, null))) {
+                if (!getCollision(spriteLudo,speed,0)) {
                     spriteLudo.x += speed
+                    st.customUpdate();
                 }
             }
 
