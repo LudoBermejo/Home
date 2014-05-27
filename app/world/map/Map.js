@@ -50,14 +50,19 @@ define(["preloadjs"], function () {
                             //cellBitmap.setTransform(-1,-1)
                             // add bitmap to stage
                             layer.addChildAt(cellBitmap, 0);
+
+                            if(layerData.name.indexOf("Collision") >-1)
+                            {
+                                //var text = new createjs.Text(x + ":" + y, "10px Arial", "#ff7700"); text.x =  x * tilewidth; text.y = y* tileheight;
+                                //layer.addChildAt(text, 0);
+
+                                arrayCollision[x + ":" + y] = cellBitmap;
+
+
+                            }
+
                         }
 
-                        if(layerData.name.indexOf("Collision") >-1)
-                        {
-                            var text = new createjs.Text(x + ":" + y, "10px Arial", "#ff7700"); text.x =  x * tilewidth; text.y = y* tileheight;
-                            //layer.addChildAt(text, 0);
-
-                        }
 
 
 
@@ -78,18 +83,44 @@ define(["preloadjs"], function () {
 
             this.getCollision = function(obj, x, y)
             {
-                var rect1 = { x: obj.x+obj.width/2+x, y: obj.y+obj.height/2+y, width: 5, height: 5}
-               for(var i=0;i<=arrayCollision.length-1;i++){
-                   for(var j=0;j<=arrayCollision[i].getNumChildren()-1;j++)
-                   {
-                       var sprite = arrayCollision[i].getChildAt(j);
-                       var rect2 = { x: sprite.x, y: sprite.y, width: wTile, height: hTile}
-                       if(checkIntersection(rect1, rect2))
-                       {
-                           return true;
-                       }
-                   }
-               }
+                var rect = obj.getBounds();
+
+                rect.x = Math.floor(obj.x/wTile);
+                rect.h = Math.floor(obj.y/hTile);
+                rect.width = Math.ceil((rect.width + obj.x)/wTile);
+                rect.height = Math.ceil((rect.height + obj.y)/hTile);
+
+                var arrayCheck = [];
+
+                for(var i= rect.x;i<=rect.width;i++)
+                {
+                    for(var j=rect.y;j<=rect.height;j++)
+                    {
+                        if(arrayCollision[i+":"+j] != undefined)
+                        {
+                            arrayCheck.push(arrayCollision[i+":"+j])
+                        }
+                    }
+                }
+
+                if(arrayCheck.length)
+                {
+                    var rect1 = { x: obj.x+obj.width/2+x, y: obj.y+obj.height/2+y, width: 5, height: 5}
+                    for(var i=0;i<= arrayCheck.length-1;i++){
+                            var sprite =  arrayCheck[i];
+                            var rect2 = { x: sprite.x, y: sprite.y, width: wTile, height: hTile}
+                            if(checkIntersection(rect1, rect2))
+                            {
+                                return true;
+                            }
+                    }
+
+                }
+
+
+
+
+
 
 
                 return false;

@@ -43,7 +43,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map"], function (preload, Lud
             manifest = [
                 {src: "app/assets/LudoSprite.png", id: "Ludo"},
                 {src: "app/assets/map/desert.json", id: "MapJSON"},
-                {src: "app/assets/map/SpriteDesert.png", id: "MapImage"}
+                {src: "app/assets/map/f8614.png", id: "MapImage"},
 
             ];
 

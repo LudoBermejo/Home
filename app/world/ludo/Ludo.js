@@ -132,9 +132,6 @@ define(["preloadjs", "collisionDetection"], function () {
 
 
 
-
-
-
         Ludo.movement = function () {
 
 
