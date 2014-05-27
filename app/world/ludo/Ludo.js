@@ -110,6 +110,11 @@ define(["preloadjs", "collisionDetection"], function () {
             spriteLudo.width = wLudo;
             spriteLudo.height = hLudo;
 
+            spriteLudo.x = 0;
+
+            spriteLudo.y = 100;
+
+
             st.addChild(spriteLudo);
         }
 
