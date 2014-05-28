@@ -16,6 +16,9 @@ define(["preloadjs", "collisionDetection"], function () {
         var customSprite;
 
 
+        var layerObjects;
+
+
         Map.init = function (stage, load) {
 
             background = new window.createjs.Container();
@@ -73,6 +76,27 @@ define(["preloadjs", "collisionDetection"], function () {
 
             }
 
+            function initObjects(objects) {
+                if (layerObjects == undefined) {
+                    layerObjects = new window.createjs.Container();
+                }
+
+
+                for (var i = 0; i <= objects.length - 1; i++) {
+                    var shape = new window.createjs.Shape();
+                    shape.graphics.beginFill("red").drawRect(0, 0, objects[i].width, objects[i].height);
+                    shape.x = objects[i].x - objects[i].x / wTile;
+                    shape.y = objects[i].y - objects[i].y / wTile
+                    shape.name = objects[i].name + "_" + objects[i].type;
+                    shape.width = objects[i].width;
+                    shape.height = objects[i].height;
+
+                    layerObjects.addChild(shape)
+                }
+
+
+            }
+
             this.getCollision = function (obj, x, y) {
 
                 if (customSprite === undefined) {
@@ -117,7 +141,6 @@ define(["preloadjs", "collisionDetection"], function () {
 
 
                     for (i = 0; i <= arrayCheck.length - 1; i++) {
-
                         var collision = window.ndgmr.checkPixelCollision(arrayCheck[i], customSprite, 0, true);
 
 
@@ -133,6 +156,43 @@ define(["preloadjs", "collisionDetection"], function () {
 
 
                 return false;
+
+            };
+
+            var checkIntersection = function (rect1, rect2) {
+                if (rect1.x >= rect2.x + rect2.width || rect1.x + rect1.width <= rect2.x || rect1.y >= rect2.y + rect2.height || rect1.y + rect1.height <= rect2.y) return false;
+                return true;
+            }
+
+            this.getTriggers = function (obj) {
+
+                var rectHero = obj.getBounds();
+                rectHero.x = obj.x;
+                rectHero.y = obj.y;
+                for (var i = 0; i <= layerObjects.getNumChildren() - 1; i++) {
+
+                    //console.log(layerObjects.getChildAt(i));
+
+
+                    //console.log(obj.x + ":" + obj.y + ":" + obj.width + ":" + obj.height)
+
+
+                    var rectTrigger = { x: layerObjects.getChildAt(i).x, y: layerObjects.getChildAt(i).y, width: layerObjects.getChildAt(i).width, height: layerObjects.getChildAt(i).height}
+
+
+                    var collision = checkIntersection(rectHero, rectTrigger)
+
+                    console.log(collision);
+
+                    if (collision) {
+
+                        console.log("TOQUE ", layerObjects.getChildAt(i).name.split("_"));
+
+                        return true;
+                    }
+
+                }
+
 
             };
 
@@ -161,10 +221,19 @@ define(["preloadjs", "collisionDetection"], function () {
                 if (layerData.type === 'tilelayer') {
                     initLayer(layerData, tilesetSheet, mapData.tilewidth, mapData.tileheight);
                 }
+                else if (layerData.objects != undefined) {
+                    initObjects(layerData.objects);
+                }
 
             }
 
+            if (layerObjects) {
+                stage.addChild(layerObjects);
+            }
+
+
             st.addChild(background);
+
 
             background.cache(0, 0, mapData.tilewidth * mapData.width, mapData.tileheight * mapData.height);
 

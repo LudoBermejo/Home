@@ -18,6 +18,7 @@ define(["preloadjs", "collisionDetection"], function () {
         var hasMoveUp;
 
         var getCollision;
+        var getTriggers;
 
         var speed = 5;
 
@@ -118,11 +119,12 @@ define(["preloadjs", "collisionDetection"], function () {
         };
 
 
-        Ludo.init = function (stage, load, gc) {
+        Ludo.init = function (stage, load, gc, gt) {
 
             st = stage;
             loader = load;
             getCollision = gc;
+            getTriggers = gt;
 
             // grab canvas width and height for later calculations:
             w = stage.canvas.width;
@@ -147,7 +149,9 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 if (!getCollision(spriteLudo,0,-speed)) {
                     spriteLudo.y -= speed;
+                    getTriggers(spriteLudo);
                     st.customUpdate();
+
                 }
             }
             else if (hasMoveDown) {
@@ -157,6 +161,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 if (!getCollision(spriteLudo,0, speed)) {
                     spriteLudo.y += speed;
+                    getTriggers(spriteLudo);
                     st.customUpdate();
                 }
             }
@@ -170,6 +175,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 if (!getCollision(spriteLudo,-speed,0)) {
                     spriteLudo.x -= speed;
+                    getTriggers(spriteLudo);
                     st.customUpdate();
                 }
             }
@@ -182,6 +188,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 if (!getCollision(spriteLudo,speed,0)) {
                     spriteLudo.x += speed;
+                    getTriggers(spriteLudo);
                     st.customUpdate();
                 }
             }

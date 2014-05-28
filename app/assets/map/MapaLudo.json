@@ -65,6 +65,160 @@
          "width":69,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":63,
+         "name":"Messages",
+         "objects":[
+                {
+                 "height":42,
+                 "name":"Educacion",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":48,
+                 "x":190,
+                 "y":193
+                }, 
+                {
+                 "height":41,
+                 "name":"PrimerTrabajo",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":36,
+                 "x":430,
+                 "y":197
+                }, 
+                {
+                 "height":54,
+                 "name":"SegundoTrabajo",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":34,
+                 "x":533,
+                 "y":177
+                }, 
+                {
+                 "height":45,
+                 "name":"TercerTrabajo",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":36,
+                 "x":572,
+                 "y":203
+                }, 
+                {
+                 "height":34,
+                 "name":"CuartoTrabajo",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":39,
+                 "x":714,
+                 "y":203
+                }, 
+                {
+                 "height":36,
+                 "name":"QuintoTrabajo",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":31,
+                 "x":866,
+                 "y":202
+                }, 
+                {
+                 "height":41,
+                 "name":"Tecnologias",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":40,
+                 "x":889,
+                 "y":113
+                }, 
+                {
+                 "height":43,
+                 "name":"Ponencias",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":55,
+                 "x":853,
+                 "y":431
+                }, 
+                {
+                 "height":37,
+                 "name":"Patentes",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":48,
+                 "x":734,
+                 "y":433
+                }, 
+                {
+                 "height":36,
+                 "name":"Curiosidades",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":59,
+                 "x":588,
+                 "y":436
+                }, 
+                {
+                 "height":46,
+                 "name":"Aficiones",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":39,
+                 "x":391,
+                 "y":430
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":69,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
