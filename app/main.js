@@ -2,12 +2,12 @@
 // define(['bower_components/componentName/file'])
 
 define(["modernizr"], function() {
-  if(Modernizr.canvas)
+
+  if(window.Modernizr.canvas)
   {
       require(["world/GameWorld"], function(gameWorld)
       {
-          console.log(gameWorld);
           gameWorld.init();
-      })
+      });
   }
 });

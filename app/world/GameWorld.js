@@ -5,40 +5,39 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map"], function (preload, Lud
 
         var manifest;
         var loader;
+        var stage;
 
 
         var handleComplete = function () {
 
 
-            createjs.Ticker.timingMode = createjs.Ticker.RAF;
-            createjs.Ticker.addEventListener("tick", tick);
+            window.createjs.Ticker.timingMode = window.createjs.Ticker.RAF_SYNCHED;
+            window.createjs.Ticker.addEventListener("tick", tick);
+
+            window.createjs.Ticker.framerate = 60;
 
             Map.init(stage, loader);
             Ludo.init(stage, loader, Map.getCollision);
 
             stage.update();
 
-        }
+        };
 
-        function tick(event) {
+        function tick() {
             Ludo.movement();
-            //stage.update(event);
         }
 
         GameWorld.init = function () {
 
 
-            stage = new createjs.Stage("worldCanvas");
+            stage = new window.createjs.Stage("worldCanvas");
+
 
             stage.customUpdate = function()
             {
                 stage.update();
-            }
+            };
 
-
-            // grab canvas width and height for later calculations:
-            w = stage.canvas.width;
-            h = stage.canvas.height;
 
             manifest = [
                 {src: "app/assets/LudoSprite.png", id: "Ludo"},
@@ -47,11 +46,11 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map"], function (preload, Lud
 
             ];
 
-            loader = new createjs.LoadQueue(false);
+            loader = new window.createjs.LoadQueue(false);
             loader.addEventListener("complete", handleComplete);
             loader.loadManifest(manifest);
 
-        }
+        };
 
 
         return GameWorld;

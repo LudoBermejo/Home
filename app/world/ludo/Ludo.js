@@ -20,8 +20,6 @@ define(["preloadjs", "collisionDetection"], function () {
         var getCollision;
 
         var speed = 5;
-        var tileSizeWidth = 32;
-        var tileSizeHeight = 32;
 
         var KEYCODE_UP = 38;		//usefull keycode
         var KEYCODE_DOWN = 40;		//usefull keycode
@@ -38,7 +36,7 @@ define(["preloadjs", "collisionDetection"], function () {
             function handleKeyDown(e) {
                 //cross browser issues exist
                 if (!e) {
-                    var e = window.event;
+                    e = window.event;
                 }
                 switch (e.keyCode) {
                     case KEYCODE_UP:
@@ -59,13 +57,12 @@ define(["preloadjs", "collisionDetection"], function () {
                         break;
 
                     default:
-                        console.log("NONE")
                 }
             }
 
             function handleKeyUp(e) {
                 if (!e) {
-                    var e = window.event;
+                    e = window.event;
                 }
                 switch (e.keyCode) {
                     case KEYCODE_UP:
@@ -86,29 +83,31 @@ define(["preloadjs", "collisionDetection"], function () {
                         break;
 
                     default:
-                        console.log("NONE")
                 }
 
             }
 
             document.onkeydown = handleKeyDown;
             document.onkeyup = handleKeyUp;
-        }
+        };
 
         var createSprite = function () {
             var data = {
                 images: [loader.getResult("Ludo")],
                 frames: {width: wLudo, height: hLudo},
-                animations: {stop: [0], down: [0, 3], left: [4, 7], right: [8, 11], up: [12, 15]}
+                animations: {stop: [0], down: [0, 3], left: [4, 7], right: [8, 11], up: [12, 15]},
+                framerate: 180
             };
-            var spriteSheetLudo = new createjs.SpriteSheet(data);
+            var spriteSheetLudo = new window.createjs.SpriteSheet(data);
 
-            spriteLudo = new createjs.Sprite(spriteSheetLudo, "stop");
+            spriteLudo = new window.createjs.Sprite(spriteSheetLudo, "stop");
+
+            spriteLudo.scaleX = spriteLudo.scaleY *= 0.8;
             spriteLudo.x = 0;
             spriteLudo.y = 0;
-            spriteLudo.framerate = 5;
-            spriteLudo.width = wLudo;
-            spriteLudo.height = hLudo;
+
+            spriteLudo.width = wLudo * spriteLudo.scaleX;
+            spriteLudo.height = hLudo * spriteLudo.scaleY;
 
             spriteLudo.x = 0;
 
@@ -116,7 +115,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
 
             st.addChild(spriteLudo);
-        }
+        };
 
 
         Ludo.init = function (stage, load, gc) {
@@ -133,7 +132,7 @@ define(["preloadjs", "collisionDetection"], function () {
             createKeyboard();
 
 
-        }
+        };
 
 
 
@@ -141,50 +140,56 @@ define(["preloadjs", "collisionDetection"], function () {
 
 
             if (hasMoveUp) {
-                if (spriteLudo.currentAnimation != "up")
+                if (spriteLudo.currentAnimation !== "up") {
                     spriteLudo.gotoAndPlay("up", 1);
+                }
 
 
                 if (!getCollision(spriteLudo,0,-speed)) {
-                    spriteLudo.y -= speed
+                    spriteLudo.y -= speed;
                     st.customUpdate();
                 }
             }
             else if (hasMoveDown) {
-                if (spriteLudo.currentAnimation != "down")
+                if (spriteLudo.currentAnimation !== "down") {
                     spriteLudo.gotoAndPlay("down", 1);
+                }
 
                 if (!getCollision(spriteLudo,0, speed)) {
-                    spriteLudo.y += speed
+                    spriteLudo.y += speed;
                     st.customUpdate();
                 }
             }
 
             if (hasMoveLeft) {
-                if (!hasMoveUp && !hasMoveDown)
-                    if (spriteLudo.currentAnimation != "left")
+                if (!hasMoveUp && !hasMoveDown) {
+                    if (spriteLudo.currentAnimation !== "left") {
                         spriteLudo.gotoAndPlay("left", 1);
+                    }
+                }
 
                 if (!getCollision(spriteLudo,-speed,0)) {
-                    spriteLudo.x -= speed
+                    spriteLudo.x -= speed;
                     st.customUpdate();
                 }
             }
             else if (hasMoveRight) {
-                if (!hasMoveUp && !hasMoveDown)
-                    if (spriteLudo.currentAnimation != "right")
+                if (!hasMoveUp && !hasMoveDown) {
+                    if (spriteLudo.currentAnimation !== "right") {
                         spriteLudo.gotoAndPlay("right", 1);
+                    }
+                }
 
                 if (!getCollision(spriteLudo,speed,0)) {
-                    spriteLudo.x += speed
+                    spriteLudo.x += speed;
                     st.customUpdate();
                 }
             }
 
-            if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) spriteLudo.currentAnimationFrame = 0;
+            if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) {spriteLudo.currentAnimationFrame = 0;}
 
 
-        }
+        };
 
 
         return Ludo;
