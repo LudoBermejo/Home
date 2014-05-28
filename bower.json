@@ -1,0 +1,10 @@
+{
+  "name": "home2",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~1.11.0",
+    "requirejs": "~2.1.13"
+  },
+  "devDependencies": {}
+}

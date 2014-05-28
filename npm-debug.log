@@ -1,0 +1,88 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'grunt-PreloadJS',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json home2@0.0.0 No description
+6 warn package.json home2@0.0.0 No repository field.
+7 warn package.json home2@0.0.0 No README data
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'grunt-PreloadJS', null ]
+10 verbose cache add name=undefined spec="grunt-PreloadJS" args=["grunt-PreloadJS",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'grunt-PreloadJS',
+11 verbose parsed url   path: 'grunt-PreloadJS',
+11 verbose parsed url   href: 'grunt-PreloadJS' }
+12 silly lockFile 40048e62-grunt-PreloadJS grunt-PreloadJS
+13 verbose lock grunt-PreloadJS C:\Users\ludo\AppData\Roaming\npm-cache\40048e62-grunt-PreloadJS.lock
+14 silly lockFile 40048e62-grunt-PreloadJS grunt-PreloadJS
+15 silly lockFile 40048e62-grunt-PreloadJS grunt-PreloadJS
+16 verbose addNamed [ 'grunt-PreloadJS', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 1cee2cbf-grunt-PreloadJS grunt-PreloadJS@
+19 verbose lock grunt-PreloadJS@ C:\Users\ludo\AppData\Roaming\npm-cache\1cee2cbf-grunt-PreloadJS.lock
+20 silly addNameRange { name: 'grunt-PreloadJS', range: '*', hasData: false }
+21 verbose url raw grunt-PreloadJS
+22 verbose url resolving [ 'https://registry.npmjs.org/', './grunt-PreloadJS' ]
+23 verbose url resolved https://registry.npmjs.org/grunt-PreloadJS
+24 info trying registry request attempt 1 at 15:28:44
+25 http GET https://registry.npmjs.org/grunt-PreloadJS
+26 http 404 https://registry.npmjs.org/grunt-PreloadJS
+27 verbose headers { date: 'Wed, 28 May 2014 13:28:53 GMT',
+27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '52',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   age: '0',
+27 verbose headers   'x-served-by': 'cache-v37-ASH, cache-lcy1123-LCY',
+27 verbose headers   'x-cache': 'MISS, MISS',
+27 verbose headers   'x-cache-hits': '0, 0',
+27 verbose headers   'x-timer': 'S1401283733.739882,VS0,VE188',
+27 verbose headers   'keep-alive': 'timeout=10, max=50',
+27 verbose headers   connection: 'Keep-Alive' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { date: 'Wed, 28 May 2014 13:28:53 GMT',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '52',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-v37-ASH, cache-lcy1123-LCY',
+28 silly registry.get     'x-cache': 'MISS, MISS',
+28 silly registry.get     'x-cache-hits': '0, 0',
+28 silly registry.get     'x-timer': 'S1401283733.739882,VS0,VE188',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 silly lockFile 1cee2cbf-grunt-PreloadJS grunt-PreloadJS@
+30 silly lockFile 1cee2cbf-grunt-PreloadJS grunt-PreloadJS@
+31 error 404 404 Not Found: grunt-PreloadJS
+31 error 404
+31 error 404 'grunt-PreloadJS' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404 It was specified as a dependency of 'home2'
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Windows_NT 6.1.7600
+33 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "grunt-PreloadJS" "--save"
+34 error cwd Z:\projects\Home2
+35 error node -v v0.10.28
+36 error npm -v 1.4.9
+37 error code E404
+38 verbose exit [ 1, true ]
