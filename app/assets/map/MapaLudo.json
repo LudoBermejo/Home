@@ -71,7 +71,7 @@
          "name":"Messages",
          "objects":[
                 {
-                 "height":42,
+                 "height":32,
                  "name":"Educacion",
                  "properties":
                     {
@@ -79,9 +79,9 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":48,
-                 "x":190,
-                 "y":193
+                 "width":35,
+                 "x":154,
+                 "y":196
                 }, 
                 {
                  "height":41,
@@ -94,10 +94,10 @@
                  "visible":true,
                  "width":36,
                  "x":430,
-                 "y":197
+                 "y":239
                 }, 
                 {
-                 "height":54,
+                 "height":35,
                  "name":"SegundoTrabajo",
                  "properties":
                     {
@@ -105,12 +105,12 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":34,
+                 "width":35,
                  "x":533,
                  "y":177
                 }, 
                 {
-                 "height":45,
+                 "height":35,
                  "name":"TercerTrabajo",
                  "properties":
                     {
@@ -118,9 +118,9 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":36,
+                 "width":37,
                  "x":572,
-                 "y":203
+                 "y":248
                 }, 
                 {
                  "height":34,
@@ -132,8 +132,8 @@
                  "type":"Message",
                  "visible":true,
                  "width":39,
-                 "x":714,
-                 "y":203
+                 "x":717,
+                 "y":248
                 }, 
                 {
                  "height":36,
@@ -145,11 +145,11 @@
                  "type":"Message",
                  "visible":true,
                  "width":31,
-                 "x":866,
-                 "y":202
+                 "x":865,
+                 "y":237
                 }, 
                 {
-                 "height":41,
+                 "height":36,
                  "name":"Tecnologias",
                  "properties":
                     {
@@ -157,12 +157,12 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":40,
-                 "x":889,
-                 "y":113
+                 "width":33,
+                 "x":926,
+                 "y":115
                 }, 
                 {
-                 "height":43,
+                 "height":26,
                  "name":"Ponencias",
                  "properties":
                     {
@@ -170,12 +170,12 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":55,
-                 "x":853,
-                 "y":431
+                 "width":30,
+                 "x":910,
+                 "y":430
                 }, 
                 {
-                 "height":37,
+                 "height":28,
                  "name":"Patentes",
                  "properties":
                     {
@@ -183,12 +183,12 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":48,
-                 "x":734,
-                 "y":433
+                 "width":31,
+                 "x":781,
+                 "y":431
                 }, 
                 {
-                 "height":36,
+                 "height":25,
                  "name":"Curiosidades",
                  "properties":
                     {
@@ -196,12 +196,12 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":59,
-                 "x":588,
-                 "y":436
+                 "width":30,
+                 "x":641,
+                 "y":432
                 }, 
                 {
-                 "height":46,
+                 "height":32,
                  "name":"Aficiones",
                  "properties":
                     {
@@ -209,9 +209,22 @@
                     },
                  "type":"Message",
                  "visible":true,
-                 "width":39,
-                 "x":391,
+                 "width":28,
+                 "x":424,
                  "y":430
+                }, 
+                {
+                 "height":36,
+                 "name":"Fortalezas",
+                 "properties":
+                    {
+
+                    },
+                 "type":"Message",
+                 "visible":true,
+                 "width":33,
+                 "x":995,
+                 "y":299
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -259,6 +272,10 @@
                 {
                  "name":"Piscina",
                  "tile":288
+                }, 
+                {
+                 "name":"Se\u00f1alizador",
+                 "tile":1603
                 }],
          "tileheight":16,
          "tiles":
@@ -310,6 +327,22 @@
              "118":
                 {
                  "terrain":[-1, -1, 2, -1]
+                },
+             "1548":
+                {
+                 "terrain":[-1, -1, -1, 5]
+                },
+             "1549":
+                {
+                 "terrain":[-1, -1, 5, -1]
+                },
+             "1603":
+                {
+                 "terrain":[-1, 5, -1, -1]
+                },
+             "1604":
+                {
+                 "terrain":[5, -1, -1, -1]
                 },
              "166":
                 {

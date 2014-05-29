@@ -16,6 +16,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
 
             window.createjs.Ticker.framerate = 60;
 
+
             Map.init(stage, loader);
             Ludo.init(stage, loader, Map.getCollision, Map.getTriggers);
             Message.init(stage, loader);
@@ -30,6 +31,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
 
         function tick() {
             Ludo.movement();
+            stage.update();
         }
 
         GameWorld.init = function () {
@@ -41,7 +43,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
 
             stage.customUpdate = function()
             {
-                stage.update();
+                //stage.update();
             };
 
 
@@ -50,7 +52,8 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/map/MapaLudo.json", id: "MapJSON"},
                 {src: "assets/map/MapaLudo.png", id: "MapImage"},
                 {src: "assets/messages/messages.json", id: "MapMessages"},
-                {src: "assets/fonts/Messages.png", id: "FontMessages"},
+                {src: "assets/TotoroSprite.png", id: "Totoro"},
+                {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"}
 
               ];
 

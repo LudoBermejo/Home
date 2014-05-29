@@ -8,6 +8,7 @@
    <terrain name="Camino de cesped" tile="116"/>
    <terrain name="baldosas" tile="952"/>
    <terrain name="Piscina" tile="288"/>
+   <terrain name="Señalizador" tile="1603"/>
   </terraintypes>
   <tile id="111" terrain=",,,1"/>
   <tile id="112" terrain=",,1,1"/>
@@ -40,6 +41,10 @@
   <tile id="1062" terrain=",3,,"/>
   <tile id="1063" terrain="3,3,,"/>
   <tile id="1064" terrain="3,,,"/>
+  <tile id="1548" terrain=",,,5"/>
+  <tile id="1549" terrain=",,5,"/>
+  <tile id="1603" terrain=",5,,"/>
+  <tile id="1604" terrain="5,,,"/>
   <tile id="2771" terrain=",,,0"/>
   <tile id="2772" terrain=",,0,0"/>
   <tile id="2773" terrain=",,0,"/>
@@ -81,16 +86,17 @@
   </data>
  </layer>
  <objectgroup name="Messages" width="69" height="63">
-  <object name="Educacion" type="Message" x="190" y="193" width="48" height="42"/>
-  <object name="PrimerTrabajo" type="Message" x="430" y="197" width="36" height="41"/>
-  <object name="SegundoTrabajo" type="Message" x="533" y="177" width="34" height="54"/>
-  <object name="TercerTrabajo" type="Message" x="572" y="203" width="36" height="45"/>
-  <object name="CuartoTrabajo" type="Message" x="714" y="203" width="39" height="34"/>
-  <object name="QuintoTrabajo" type="Message" x="866" y="202" width="31" height="36"/>
-  <object name="Tecnologias" type="Message" x="889" y="113" width="40" height="41"/>
-  <object name="Ponencias" type="Message" x="853" y="431" width="55" height="43"/>
-  <object name="Patentes" type="Message" x="734" y="433" width="48" height="37"/>
-  <object name="Curiosidades" type="Message" x="588" y="436" width="59" height="36"/>
-  <object name="Aficiones" type="Message" x="391" y="430" width="39" height="46"/>
+  <object name="Educacion" type="Message" x="154" y="196" width="35" height="32"/>
+  <object name="PrimerTrabajo" type="Message" x="430" y="239" width="36" height="41"/>
+  <object name="SegundoTrabajo" type="Message" x="533" y="177" width="35" height="35"/>
+  <object name="TercerTrabajo" type="Message" x="572" y="248" width="37" height="35"/>
+  <object name="CuartoTrabajo" type="Message" x="717" y="248" width="39" height="34"/>
+  <object name="QuintoTrabajo" type="Message" x="865" y="237" width="31" height="36"/>
+  <object name="Tecnologias" type="Message" x="926" y="115" width="33" height="36"/>
+  <object name="Ponencias" type="Message" x="910" y="430" width="30" height="26"/>
+  <object name="Patentes" type="Message" x="781" y="431" width="31" height="28"/>
+  <object name="Curiosidades" type="Message" x="641" y="432" width="30" height="25"/>
+  <object name="Aficiones" type="Message" x="424" y="430" width="28" height="32"/>
+  <object name="Fortalezas" type="Message" x="995" y="299" width="33" height="36"/>
  </objectgroup>
 </map>

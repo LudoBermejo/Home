@@ -1,4 +1,4 @@
-define(["preloadjs", "collisionDetection"], function () {
+define(["world/map/totoro/Totoro","preloadjs", "collisionDetection"], function (Totoro) {
         //return an object to define the "my/shirt" module.
 
         var Map = {};
@@ -17,12 +17,15 @@ define(["preloadjs", "collisionDetection"], function () {
 
 
         var layerObjects;
+        var layerTotoros;
 
 
 
 
         Map.init = function (stage, load, mg) {
 
+
+            Totoro.init(load);
             this.message = null;
 
             var self = this;
@@ -85,11 +88,13 @@ define(["preloadjs", "collisionDetection"], function () {
             function initObjects(objects) {
                 if (layerObjects == undefined) {
                     layerObjects = new window.createjs.Container();
+                    layerTotoros = new window.createjs.Container();
                 }
 
 
                 for (var i = 0; i <= objects.length - 1; i++) {
                     var shape = new window.createjs.Shape();
+                    shape.visible = false;
                     shape.graphics.beginFill("red").drawRect(0, 0, objects[i].width, objects[i].height);
                     shape.x = objects[i].x - objects[i].x / wTile;
                     shape.y = objects[i].y - objects[i].y / wTile
@@ -97,7 +102,23 @@ define(["preloadjs", "collisionDetection"], function () {
                     shape.width = objects[i].width;
                     shape.height = objects[i].height;
 
+                    var totoro = Totoro.getClone();
+
+
+                    totoro.x = shape.x + shape.width/2 - Totoro.width()/2;
+                    totoro.y = shape.y + shape.height/2 - Totoro.height()/2;
+
+                    totoro.gotoAndPlay(1);
+
+
+
                     layerObjects.addChild(shape)
+
+                    layerTotoros.addChild(totoro)
+
+
+
+
                 }
 
 
@@ -189,7 +210,6 @@ define(["preloadjs", "collisionDetection"], function () {
 
                     if (collision) {
 
-                        console.log("TOQUE ", layerObjects.getChildAt(i).name.split("_"));
 
                         if(layerObjects.getChildAt(i).name.split("_")[1] == "Message") {
 
@@ -238,13 +258,20 @@ define(["preloadjs", "collisionDetection"], function () {
 
             }
 
+
+
             if (layerObjects) {
                 stage.addChild(layerObjects);
             }
 
 
+
             st.addChild(background);
 
+
+            if (layerTotoros) {
+                stage.addChild(layerTotoros);
+            }
 
             background.cache(0, 0, mapData.tilewidth * mapData.width, mapData.tileheight * mapData.height);
 

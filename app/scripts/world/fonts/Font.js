@@ -14,7 +14,7 @@ define([], function () {
             stage = st;
             fontSheet = new createjs.SpriteSheet({
                 images: [font],
-                frames: {width: 16, height: 16, count: charMap.length}
+                frames: {width: 40, height: 40, count: charMap.length}
             });
 
 
@@ -37,8 +37,10 @@ define([], function () {
                 var chatImg = getCharImg(char);
                 var bmp = new createjs.Bitmap(chatImg);
                 message.addChild(bmp);
-                bmp.x = i * 16;
+                bmp.x = i * 60;
             }
+
+            return message;
         };
 
 

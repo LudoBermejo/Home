@@ -176,7 +176,7 @@ define(["preloadjs", "collisionDetection"], function () {
                 if (!getCollision(spriteLudo,-speed,0)) {
                     spriteLudo.x -= speed;
                     getTriggers(spriteLudo);
-                    st.customUpdate();
+                    
                 }
             }
             else if (hasMoveRight) {
