@@ -19,7 +19,13 @@ define(["preloadjs", "collisionDetection"], function () {
         var layerObjects;
 
 
-        Map.init = function (stage, load) {
+
+
+        Map.init = function (stage, load, mg) {
+
+            this.message = null;
+
+            var self = this;
 
             background = new window.createjs.Container();
             // layer initialization
@@ -97,6 +103,8 @@ define(["preloadjs", "collisionDetection"], function () {
 
             }
 
+
+
             this.getCollision = function (obj, x, y) {
 
                 if (customSprite === undefined) {
@@ -171,10 +179,6 @@ define(["preloadjs", "collisionDetection"], function () {
                 rectHero.y = obj.y;
                 for (var i = 0; i <= layerObjects.getNumChildren() - 1; i++) {
 
-                    //console.log(layerObjects.getChildAt(i));
-
-
-                    //console.log(obj.x + ":" + obj.y + ":" + obj.width + ":" + obj.height)
 
 
                     var rectTrigger = { x: layerObjects.getChildAt(i).x, y: layerObjects.getChildAt(i).y, width: layerObjects.getChildAt(i).width, height: layerObjects.getChildAt(i).height}
@@ -182,16 +186,23 @@ define(["preloadjs", "collisionDetection"], function () {
 
                     var collision = checkIntersection(rectHero, rectTrigger)
 
-                    console.log(collision);
 
                     if (collision) {
 
                         console.log("TOQUE ", layerObjects.getChildAt(i).name.split("_"));
 
+                        if(layerObjects.getChildAt(i).name.split("_")[1] == "Message") {
+
+
+                            self.message.draw(layerObjects.getChildAt(i).name.split("_")[0])
+                        }
+
                         return true;
                     }
 
                 }
+
+                self.message.undraw();
 
 
             };

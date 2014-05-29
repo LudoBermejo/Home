@@ -18,8 +18,11 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
 
             Map.init(stage, loader);
             Ludo.init(stage, loader, Map.getCollision, Map.getTriggers);
-
             Message.init(stage, loader);
+
+            console.log(Message);
+
+            Map.message = Message;
 
             stage.update();
 
@@ -46,7 +49,8 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/LudoSprite.png", id: "Ludo"},
                 {src: "assets/map/MapaLudo.json", id: "MapJSON"},
                 {src: "assets/map/MapaLudo.png", id: "MapImage"},
-                {src: "assets/map/messages/messages.json", id: "MapMessages"},
+                {src: "assets/messages/messages.json", id: "MapMessages"},
+                {src: "assets/fonts/Messages.png", id: "FontMessages"},
 
               ];
 
