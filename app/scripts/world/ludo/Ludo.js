@@ -32,6 +32,8 @@ define(["preloadjs", "collisionDetection"], function () {
         var KEYCODE_S = 83;			//usefull keycode
 
 
+        var originalData = {};
+
         var createKeyboard = function () {
             //allow for WASD and arrow control scheme
             function handleKeyDown(e) {
@@ -137,17 +139,63 @@ define(["preloadjs", "collisionDetection"], function () {
         };
 
 
+        Ludo.changeArea = function(area)
+        {
+            originalData = {x: spriteLudo.x, y: spriteLudo.y, scale: spriteLudo.scaleX, lastSpeed: speed, getCollision: getCollision, getTriggers: getTriggers, stage: spriteLudo.parent};
+
+            spriteLudo.scaleX = spriteLudo.scaleY = 1;
+            spriteLudo.width = wLudo * spriteLudo.scaleX;
+            spriteLudo.height = hLudo * spriteLudo.scaleY;
+
+            console.log(speed);
+
+            speed *=area.container.scaleX;
+
+            getCollision = area.getCollision;
+            getTriggers = area.getTriggers;
+
+            area.onExitArea.push( function()
+            {
+                hasMoveRight = hasMoveLeft = hasMoveDown = hasMoveUp = false;
+                spriteLudo.scaleX = spriteLudo.scaleY = originalData.scale;
+                spriteLudo.width = wLudo * spriteLudo.scaleX;
+                spriteLudo.height = hLudo * spriteLudo.scaleY;
+
+                spriteLudo.x = originalData.x;
+                spriteLudo.y = originalData.y;
+                speed = originalData.lastSpeed;
+                console.log(spriteLudo.x + ":" + spriteLudo.y);
+                getCollision = originalData.getCollision;
+                getTriggers = originalData.getTriggers;
+
+                originalData.stage.addChild(spriteLudo);
+            });
+
+
+
+            if(area.startPlayerPosition != null)
+            {
+                spriteLudo.x = area.startPlayerPosition.x ;
+                spriteLudo.y = area.startPlayerPosition.y ;
+            }
+
+            area.container.addChild(spriteLudo)
+        }
 
         Ludo.movement = function () {
 
+            console.log(spriteLudo.parent.width);
 
             if (hasMoveUp) {
+                console.log(speed);
                 if (spriteLudo.currentAnimation !== "up") {
                     spriteLudo.gotoAndPlay("up", 1);
                 }
 
 
-                if (!getCollision(spriteLudo,0,-speed)) {
+                if (!getCollision(spriteLudo,0,-speed && (spriteLudo.y -speed > 0))) {
+
+
                     spriteLudo.y -= speed;
                     getTriggers(spriteLudo);
                     st.customUpdate();
@@ -159,7 +207,7 @@ define(["preloadjs", "collisionDetection"], function () {
                     spriteLudo.gotoAndPlay("down", 1);
                 }
 
-                if (!getCollision(spriteLudo,0, speed)) {
+                if (!getCollision(spriteLudo,0, speed) && (spriteLudo.y +speed < spriteLudo.parent.height)) {
                     spriteLudo.y += speed;
                     getTriggers(spriteLudo);
                     st.customUpdate();
@@ -173,7 +221,7 @@ define(["preloadjs", "collisionDetection"], function () {
                     }
                 }
 
-                if (!getCollision(spriteLudo,-speed,0)) {
+                if (!getCollision(spriteLudo,-speed,0)&& (spriteLudo.x -speed > 0)) {
                     spriteLudo.x -= speed;
                     getTriggers(spriteLudo);
                     
@@ -186,7 +234,9 @@ define(["preloadjs", "collisionDetection"], function () {
                     }
                 }
 
-                if (!getCollision(spriteLudo,speed,0)) {
+                console.log(spriteLudo.parent.width);
+
+                if (!getCollision(spriteLudo,speed,0) && (spriteLudo.x +speed < spriteLudo.parent.width)) {
                     spriteLudo.x += speed;
                     getTriggers(spriteLudo);
                     st.customUpdate();

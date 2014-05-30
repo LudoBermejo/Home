@@ -1,7 +1,7 @@
-define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book","world/map/areas/SecundaryArea","preloadjs", "collisionDetection"], function (Totoro, Portal, Book, SecundaryArea) {
+define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Book", "preloadjs", "collisionDetection"], function (Totoro, Portal, Book) {
         //return an object to define the "my/shirt" module.
 
-        var Map = {};
+        var SecundaryArea = {};
 
         var st;
 
@@ -19,20 +19,23 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
         var layerObjects;
         var layerTotoros;
         var layerPortals;
-        var disabled;
-        var lastArea = "";
+        var layerBooks;
 
 
-
-        Map.init = function (stage, load, mg) {
+        SecundaryArea.init = function (stage, load, internalName) {
 
 
             Totoro.init(load);
             Portal.init(load);
+            Book.init(load);
 
             this.message = null;
 
             var self = this;
+
+            this.width = 0;
+            this.height = 0;
+            this.startPlayerPosition = {};
 
             background = new window.createjs.Container();
             // layer initialization
@@ -85,6 +88,11 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                 }
 
+                self.width = layerData.width * tilewidth - layerData.width*2;
+                self.height = layerData.height * tileheight - layerData.height*2;
+
+
+
 
                 background.addChild(layer);
 
@@ -95,6 +103,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                     layerObjects = new window.createjs.Container();
                     layerTotoros = new window.createjs.Container();
                     layerPortals = new window.createjs.Container();
+                    layerBooks = new window.createjs.Container();
                 }
 
 
@@ -103,7 +112,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                     shape.visible = false;
                     shape.graphics.beginFill("red").drawRect(0, 0, objects[i].width, objects[i].height);
                     shape.x = objects[i].x - objects[i].x / wTile;
-                    shape.y = objects[i].y - objects[i].y / wTile
+                    shape.y = objects[i].y - objects[i].y / wTile;
                     shape.name = objects[i].name + "_" + objects[i].type;
                     shape.width = objects[i].width;
                     shape.height = objects[i].height;
@@ -112,37 +121,44 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                     layerObjects.addChild(shape)
 
 
-                    if(objects[i].type == "Message")
-                    {
+                    if (objects[i].type == "Message") {
                         var totoro = Totoro.getClone();
-                        layerTotoros.addChild(totoro)
+                        layerTotoros.addChild(totoro);
 
 
-                        totoro.x = shape.x + shape.width/2 - Totoro.width()/2;
-                        totoro.y = shape.y + shape.height/2 - Totoro.height()/2;
+                        totoro.x = shape.x + shape.width / 2 - Totoro.width() / 2;
+                        totoro.y = shape.y + shape.height / 2 - Totoro.height() / 2;
 
                         totoro.gotoAndPlay(1);
 
                     }
 
-                    else
-
+                    else if (objects[i].type == "GotoArea")
                     {
                         var portal = Portal.getClone();
                         layerPortals.addChild(portal)
 
 
-                        portal.x = shape.x + shape.width/2 - Totoro.width()/2;
-                        portal.y = shape.y + shape.height/2 - Totoro.height()/2;
+                        portal.x = shape.x + shape.width / 2 - Totoro.width() / 2;
+                        portal.y = shape.y + shape.height / 2 - Totoro.height() / 2;
 
                         portal.gotoAndPlay(1);
                     }
+                    else if (objects[i].type == "StartPlayer")
+                    {
+                        self.startPlayerPosition = {x: shape.x + shape.width / 2, y: shape.y + shape.height }
+                    }
+                    else if (objects[i].type == "OpenWeb")
+                    {
+                        var book = Book.getClone();
+                        layerBooks.addChild(book)
 
 
+                        book.x = shape.x + shape.width / 2 - Book.width() / 2;
+                        book.y = shape.y + shape.height / 2 - Book.height() / 2;
 
-
-
-
+                        book.gotoAndPlay(1);
+                    }
 
 
                 }
@@ -151,11 +167,8 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
             }
 
 
-
             this.getCollision = function (obj, x, y) {
 
-
-                if(disabled) return false;
                 if (customSprite === undefined) {
                     customSprite = obj.clone();
 
@@ -202,7 +215,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
 
                         if (collision) {
-                            console.log("COLISIONO")
+
                             return true;
                         }
 
@@ -221,48 +234,16 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 return true;
             }
 
-            this.disable = function()
-            {
-                disabled = true;
-
-                for(var i=0;i<=layerTotoros.getNumChildren()-1;i++)
-                {
-                    layerTotoros.getChildAt(i).stop();
-                }
-
-                for(i=0;i<=layerPortals.getNumChildren()-1;i++)
-                {
-                    layerPortals.getChildAt(i).stop();
-                }
-            }
-
-            this.enable = function()
-            {
-                disabled = false;
-
-                for(var i=0;i<=layerTotoros.getNumChildren()-1;i++)
-                {
-                    layerTotoros.getChildAt(i).gotoAndPlay(1);
-                }
-
-                for(i=0;i<=layerPortals.getNumChildren()-1;i++)
-                {
-                    layerPortals.getChildAt(i).gotoAndPlay(1);
-                }
-            }
-
-
             this.onChangeArea = null;
+
+            this.onExitArea = null;
 
             this.getTriggers = function (obj) {
 
-                if(disabled) return false;
                 var rectHero = obj.getBounds();
                 rectHero.x = obj.x;
                 rectHero.y = obj.y;
-                var hasLastArea = false;
                 for (var i = 0; i <= layerObjects.getNumChildren() - 1; i++) {
-
 
 
                     var rectTrigger = { x: layerObjects.getChildAt(i).x, y: layerObjects.getChildAt(i).y, width: layerObjects.getChildAt(i).width, height: layerObjects.getChildAt(i).height}
@@ -273,81 +254,27 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                     if (collision) {
 
+                        console.log(layerObjects.getChildAt(i).name);
 
-
-
-                        if(layerObjects.getChildAt(i).name.split("_")[1] == "Message") {
+                        if (layerObjects.getChildAt(i).name.split("_")[1] == "Message") {
                             self.message.draw(layerObjects.getChildAt(i).name.split("_")[0])
                         }
                         else if(layerObjects.getChildAt(i).name.split("_")[1] == "GotoArea") {
 
-                            if(lastArea != layerObjects.getChildAt(i).name.split("_")[0] ) {
-
-                                lastArea = layerObjects.getChildAt(i).name.split("_")[0]
-                                hasLastArea = true;
-
-                                var area = SecundaryArea;
-
-                                self.disable();
-
-                                var areaContainer = new window.createjs.Container();
-                                var grey = new window.createjs.Shape();
-
-                                grey.graphics.beginFill("darkgray").drawRect(0, 0, stage.width, stage.height);
-                                grey.alpha = .5;
-
-                                st.addChild(grey);
-
-
-                                stage.addChild(areaContainer);
-
-                                areaContainer.scaleX = areaContainer.scaleY = 2;
-
-                                area.init(areaContainer, load, layerObjects.getChildAt(i).name.split("_")[0]);
-                                areaContainer.width = area.width;
-                                areaContainer.height = area.height;
-
-                                area.onExitArea = [];
-                                area.onExitArea.push(function () {
-                                    st.removeChild(grey);
-                                    while (area.container.length) {
-                                        area.container.removeChildAt(0);
-                                    }
-
-                                    st.removeChild(areaContainer);
-
-
-                                    self.enable();
-                                })
-
-                                area.message = self.message;
-                                areaContainer.x = stage.width / 2 - area.width * areaContainer.scaleX / 2;
-                                areaContainer.y = stage.height / 2 - area.height * areaContainer.scaleY / 2;
-
-                                area.container = areaContainer;
-
-                                self.onChangeArea(area);
-
-                            }
-                            else
+                            if(layerObjects.getChildAt(i).name.split("_")[0] == "Exit")
                             {
-                                hasLastArea = true;
+                                for(var j= 0;j<=self.onExitArea.length-1;j++)
+                                {
+                                    self.onExitArea[j]();
+                                }
                             }
-
-
-
 
                         }
 
-
-                        console.log(hasLastArea);
-                        if(!hasLastArea) lastArea = null;
                         return true;
                     }
 
                 }
-
-                if(!hasLastArea) lastArea = null;
 
                 self.message.undraw();
 
@@ -357,14 +284,14 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
             st = stage;
 
-            mapData = load.getResult("MapJSON");
+            mapData = load.getResult(internalName + "JSON");
 
             // compose EaselJS tileset from image (fixed 64x64 now, but can be parametized)
             wTile = mapData.tilesets[0].tilewidth;
             hTile = mapData.tilesets[0].tileheight;
 
             var imageData = {
-                images: [ load.getResult("MapImage") ],
+                images: [ load.getResult(internalName + "Image") ],
                 frames: {
                     width: wTile,
                     height: hTile
@@ -386,11 +313,9 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
             }
 
 
-
             if (layerObjects) {
                 st.addChild(layerObjects);
             }
-
 
 
             st.addChild(background);
@@ -404,11 +329,15 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 st.addChild(layerPortals);
             }
 
+            if (layerBooks) {
+                st.addChild(layerBooks);
+            }
+
             background.cache(0, 0, mapData.tilewidth * mapData.width, mapData.tileheight * mapData.height);
 
         };
 
 
-        return Map;
+        return SecundaryArea;
     }
 );

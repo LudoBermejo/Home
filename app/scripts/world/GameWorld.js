@@ -14,7 +14,8 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
             window.createjs.Ticker.timingMode = window.createjs.Ticker.RAF_SYNCHED;
             window.createjs.Ticker.addEventListener("tick", tick);
 
-            window.createjs.Ticker.framerate = 60;
+
+            window.createjs.Ticker.setFPS(40);
 
 
             Map.init(stage, loader);
@@ -24,6 +25,12 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
             console.log(Message);
 
             Map.message = Message;
+
+            Map.onChangeArea = function(area)
+            {
+                Ludo.changeArea(area);
+            };
+
 
             stage.update();
 
@@ -37,7 +44,16 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
         GameWorld.init = function () {
 
 
+            var ctx = document.getElementById("worldCanvas").getContext("2d");
+
+            ctx.imageSmoothingEnabled = false;
+            ctx.mozImageSmoothingEnabled = false;
+            ctx.webkitImageSmoothingEnabled = false;
+
+
             stage = new window.createjs.Stage("worldCanvas");
+            stage.width =  parseInt(document.getElementById("worldCanvas").getAttribute("width"));
+            stage.height =  parseInt(document.getElementById("worldCanvas").getAttribute("height"));
 
 
 
@@ -53,7 +69,11 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/map/MapaLudo.png", id: "MapImage"},
                 {src: "assets/messages/messages.json", id: "MapMessages"},
                 {src: "assets/TotoroSprite.png", id: "Totoro"},
-                {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"}
+                {src: "assets/PortalSprite.png", id: "Portal"},
+                {src: "assets/BookSprite.png", id: "Book"},
+                {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"},
+                {src: "assets/map/Training.json", id: "TrainingJSON"},
+                {src: "assets/map/Interior.png", id: "TrainingImage"}
 
               ];
 

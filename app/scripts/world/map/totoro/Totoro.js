@@ -16,7 +16,7 @@ define(["preloadjs", "collisionDetection"], function () {
         var createSprite = function () {
             var data = {
                 images: [loader.getResult("Totoro")],
-                frames: {width: 29, height: 32}
+                frames: {width: wTotoro, height: hTotoro}
 
             };
 

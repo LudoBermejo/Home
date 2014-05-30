@@ -67,7 +67,7 @@
  </layer>
  <layer name="CollisionForest" width="69" height="63">
   <data encoding="base64" compression="zlib">
-   eJztmulRwzAQhRUnPXCVEq4SCKUACS1AKRyhAo6UAgEq4PrLakYae9a2Vpcdj7TfzM4zYEvR6mklZ5iOhNiHmPakRxDHEJID0MMe+6Z0qT7XGej5qD9dQFyqvi9A5z32bfPZJCG5vVe5tbnvBuJW3f+g+r5Df4vVl819bWryiczZO8SHo85RG/r3rxBv6udP1fe68szCoy+T+vpPoucIa3U+bdHzvnRoo/qMa39Um21jM6lEzx/W6nza0jTvVBv6GZ/+qDbbxmbSrtDzzpRonzAl7JM6uj4wDMMwDMP4sFcIsVuUyghxCnmYFaUyQlxDHq6KUhn2SRM5+gTXUKwriJeK5gBeG1hz9AkeM9a2erIF19sQOxDrMbz/jzc3htisPH3yCNdPEM8yLxNYZ5PNjSE2lE/a6skXXH9D/ECcQD5mCeXEtZ7kcK51rSc5nFfw2sBK5SxF2Cd1XPcd9gm9tlLEdd9hn+TpE9536vC+U4frSR2uJ3VCfZLie0+oT1KsK6H7Top15Y8Yb44+kZhqSo4+kYT4JNX9J8Qncu39JpgT07hzPMdKTOvC9nyS2ve0pnVhU09S9I9pXdjuO6ntQ6ZxUfUk1TqTg0+o/xXAmMZlez4Z+nmF+i6+6f62cfn6pO/9h/KBq6/1uQurKV9Dew+ifBCz/vn6hDq/xNbQz+mCb96xhs5j6PNN7fnWv9D8D1Wb6oQtvvWEOud2rV3ui5uez1g+CPFFFz6p7kN9+aJLqHzb6pDrw6aI5bchnJv/AeSexjA=
+   eJztmulRwzAQhRUnPXB2Eq4SCKUAgRagFI5QAUdKgQAVcP1lNVhjzdrW6vCFtN/MzjNgS9HqaSVnmI6E2IGYdqT7EAcQkl3QvQ77pnSRf65j0JNRd3oGcZ73fQo677Bvm88mCcntbZ5bm/uuIK7z++/yvm/Q35rqy+a+OjX5RObsFeLNUeeoDfX7Z4iX/Of3vO+V9syZR18m9fWfRM0RVn0+bVHzvnBoQ3/GtT+qzbqxmVSi5g+rPp+2VM071YZ6xqc/qs26sZm0LdS8MwXKJ0wB+6SMqg8MwzAMwzA+bGVCbGaFMkIcQR5mWaGMEJeQh4usUIZ9UkWKPsE1FOsS4knTFMBrA2uKPsFjxlpXT9bgeh1iA2I1hvf/cX9jaJqlp0/u4foB4lHmZQLrbNLfGJqG8kldPfmA60+IL4hDyMcsopy41pMUzrWu9SSF8wpeG1ipnMUI+6SM677DPjGvrZj2Xx3XfYd9QtfgGOF9pwzvO2W4npThelIm1CcxvveE+iTGuhK678RYV36I8aboE4mppqToE0mIT2Ldf0J8Itfed4Q5MY07xXOsxLQubM8nsX1Pa1oXNvXkv/tne/IXOqZ1YbvvxLYPmcZF1ZNY60wKPqH+VwBjGpft+WTo5xXqu/iq++vG5euTrvcfygeuvlbnLqymfA3tPYjyQZP1z9cn1PmlaQ39nC745h1r6DyGPl/Vnm/9C83/ULWqTtjiW0+oc27b2ua+2Pd8NuWDEF+04RN9H+rKF21C5dtWh1wf+qIpvw3h3PwLfyXFzQ==
   </data>
  </layer>
  <layer name="Carreteras" width="69" height="63">
@@ -82,21 +82,22 @@
  </layer>
  <layer name="CollisionBuildings" width="69" height="63">
   <data encoding="base64" compression="zlib">
-   eJzt23eQlOUdB/AFrgNGM4RyBwe2UA4USFF6NepIL5YUuDt6yiQE7mjJPwnSo4lGqpRoJqHcHVj+SRRFSY9UKSmTCFdA4j9KE0j93DCZXNbZ42Vd1lt2fzOfYd6HZ957fl/e591nmblQKFXJUnc3DoV60Zs+9KUf/RnQ+KNe3UdTX9f3N5jJN5nFbEooTdJMfqLvn7KZLWxlG2WUN/BMWmSHQp+gJa1onR2b+/5F33/lLY5xnEqqqP6QmXTKCIU604UCutKNO7iT7vSgZ0Z0939ABsMYzghGxiiTFk1kTUta0Zo25JJHSSN7ill1/sxqFOzeE/VaSBHFTGIyU5jKNKYzI8pMviOD77KQR1kUo0we0PcwhjOCkYxiNNv0XsYWttb5s5yKALms1OsqVrOGtazjadazgY1sijKTn8ng57zEy+yszSdNPixiMUvSort3pKrUd1Wj/39WSqmmJkAme/S6l33s5wAHeZNDHOYIR6PM5F0ZvMdpznA2DpnUVvizEvQZqa20zFAonQwyySKbHJrSjObckBnd2jrmeGfRmS4U5MQnk/8+K8c4fhXPSG310Wtf+tGfAQxkEIMZwlDuiTKTCTKYSCFFFOdEd5+rrVnWO5sSSpnDXOZF2cf1UFv1vo0yyqlgOzuSOJPjeq+kimpqOMHJJM6kdZbzCrnk0ZZ25Gdd259b6t04h7nMi/CenGB8IoUURZgz1fg0pjMjwpwvG/8KX+VrAd7JI/U+itGMYSzjGF9PJjPTfXYzi9mUUMoc5jIv/co/t9zaKtjOjgjrfMr4SlaxOsKc9cY3sJFNEeb8yPgzPMuPA2SySO+LWcJSlrGcFfVkslnPW9jKNsoop4Lt7AiQSbW11XCCkxHW+YbxPexlX4Q5h4wf5ghHI8z5g/E/8if+HCCTnXp/hVfZxWu8zu56MnlLz8c4TiVVVFPDCU4GyCTPnLa0Iz/C/CbG00gnI2xO9/TLmtKM5twQNmdX2mUfM34jN/HxAGs7q/dznOd9LnCRS/Vk0tK5tBWtaUMuebSlHfkBzq1jrG0s4xgfYZ29jfehL/0iZDKYIQzlngiZfM74vdzH/QEyKXBe7ko37uBOutOjnu9bw/U8gpGMYjRjGMs4xkd5lr+a6h6gt13X4IwbqRbq+VEWsZglLGUZy1kRo0zyfU9tT4cmsbnftayX9PwyO3mFV9nFa7zO7oCZnOYMZznH+bC/r5vJzdzCrdzG7XwyLKuOrjvRmS4U0JVuccj0tJ7PcJZznOd9LnCRSwEz6ex7VRcK6Eq3sO9Z4/XyIA/xMI/web7AF/lSWK8TXE+kkCKKmcTkOvPm208L+BbfjuPeClqFMiiimElMDstkhV6+x2M8zvf5AU/wJD8My+Qp1ytZxWrWsJZ1deY9J4fneYEXG2Amq2SwmjWsZV1YJrv18gt+ya/4Nb/ht/yO34dl8obrPexlH/s5wME6896Wwyn+xjsNMJO9MtjHfg5wMCyTS3r5O//gn/yLf9f2p5dGNA7rqYnrNNLJIJMssuvMa+/zqgM3c0uAz654V3pjayeTLLLD/s+8h1568ik+zWf4LHdxN73CMuntug996Ud/BjCwzrwH5fAQD/NIA8wkVclXlfZ5VQKcreJZbezZ3Bi+x6+HjEfJY3QMM6kv4+shr2iqvoxj/UxeDxXrZzJV/6tk3YP1VTz2YKLlHo89mHr3fbBS775UXakS7V0Sj/Um2rskHutNtHdJoq03ValKVaoSrRLt/BCPivf5IRH+DeL9eZxoZ7h4VOpMFKwSYT/Fu1L76YOVKPupODsUmsRkpjCVaUyP0e8PJWKt0fta1vE069nAxiTOZL/eD3CQNznEYY4kcSaZOaFQFtnk0JRmNI/T78o0xOqv9wEMZBCDGcLQJM6kRO+lzGEu85jPgiTOpEzv5VSwnR08x/NJnEmV3qup4QQneZtTSZxJbtNQKI+2tCOf9nTgP57DVq0=
+   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
   </data>
  </layer>
  <objectgroup name="Messages" width="69" height="63">
   <object name="Educacion" type="Message" x="154" y="196" width="35" height="32"/>
-  <object name="PrimerTrabajo" type="Message" x="430" y="239" width="36" height="41"/>
-  <object name="SegundoTrabajo" type="Message" x="533" y="177" width="35" height="35"/>
-  <object name="TercerTrabajo" type="Message" x="572" y="248" width="37" height="35"/>
-  <object name="CuartoTrabajo" type="Message" x="717" y="248" width="39" height="34"/>
-  <object name="QuintoTrabajo" type="Message" x="865" y="237" width="31" height="36"/>
+  <object name="PrimerTrabajo" type="Message" x="431" y="218" width="36" height="41"/>
+  <object name="SegundoTrabajo" type="Message" x="509" y="177" width="34" height="21"/>
+  <object name="TercerTrabajo" type="Message" x="572" y="220" width="37" height="35"/>
+  <object name="CuartoTrabajo" type="Message" x="717" y="218" width="39" height="34"/>
+  <object name="QuintoTrabajo" type="Message" x="863" y="216" width="31" height="36"/>
   <object name="Tecnologias" type="Message" x="926" y="115" width="33" height="36"/>
   <object name="Ponencias" type="Message" x="910" y="430" width="30" height="26"/>
   <object name="Patentes" type="Message" x="781" y="431" width="31" height="28"/>
   <object name="Curiosidades" type="Message" x="641" y="432" width="30" height="25"/>
   <object name="Aficiones" type="Message" x="424" y="430" width="28" height="32"/>
   <object name="Fortalezas" type="Message" x="995" y="299" width="33" height="36"/>
+  <object name="Training" type="GotoArea" x="192" y="154" width="47" height="22"/>
  </objectgroup>
 </map>

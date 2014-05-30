@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="22" height="22" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="Interior" tilewidth="16" tileheight="16">
+  <image source="Interior/Interior.png" width="560" height="816"/>
+ </tileset>
+ <layer name="CollisionMesas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALSgD8jeRifGaNgFIx0AAAJTAWh
+  </data>
+ </layer>
+ <layer name="Fondo" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJzrY2Jg6AfiPirTG4F4Ew1oartz1L2j7h1176h7R907PN071DAAtZw1cA==
+  </data>
+ </layer>
+ <layer name="CollisionParedes" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztzMk2kAEAhuHf0rgSEiq2hqyIjJWtqZUxM1tTK5QhlK1xZZb5IoyVki6C6CY8d2Hzv+c8q++c7zoIghv+ccsd/4nnEQkkksRjknlCCqmk8ZRnPCedDCIjgiCKaGKIJY48Wz4vKaCQVxRRTAmllFHOa97wlgoyfWSRTQ4vyKXOVk8DjTTRzHtaaKWNdjropItueqj0UUU1NdTyjiHbMCN85BOjjDHOBJ+ZZIppvvCVGXp99NHPAIN8YNm2wiprrLPBJlt8Y5sddtljnwMOmfUxxzwLLLLEke2YE04545zv/OAnF/ziN5f84Yq/QVhYWFjYQ3UPves6Pw==
+  </data>
+ </layer>
+ <layer name="CollisionMesas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjILBAfYxMjDsZySPjQ88BKp5xEgeeziB0fAd3AAAKV4gqQ==
+  </data>
+ </layer>
+ <layer name="CollisionAlumnos" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztkskRgkAQRedEVBoI7oGIqASi4oKCUbijAinxDj8ADk5ZWvMv7x26flVPjzEuLt9NyzOm7X2+d0jnyELvnM7IQq+LvSTca6+bbeFOvoYb+QrG8gVcNrjxk5mX5h4wl9/gXX6BV/kJnv/w7xzYKdVeGTzKfdiRd2FP3oeDBu/wZqbQXAkr+RgG8gkM5VM4++H3rQEWhxxy
+  </data>
+ </layer>
+ <layer name="CollisionSillas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B0kMTMwJDMTH1zW4FmttHA3BVAM1fSwNxRMDRAFSMDQzUjeWx8YC5QzTxG8tj4wAGgmoOM5LEHAoyGL3UAAIo4KFo=
+  </data>
+ </layer>
+ <layer name="CollisionMesaProfe" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztzLcNgDAYBeEnewviJMT9S5MmIRbcDrYExX/S155kWd8XnDRhxoIVm4v/7jwOnLhw40nwzbyUo0CJCrWP/zY8WnToMWBM8LUs6/+9HzYNRQ==
+  </data>
+ </layer>
+ <layer name="CollisionExtras" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJzt0bkOAVEUgOEzMw0lpbUkoaS0liTW5yCxhhexhMeyvgSltfA3kmkkYs4UxEm+7ua/N+eKfNfUTJE6Gmiaet0erT4GGCp2J7SmmGGu0D3g6DwjMd4St73HZ4j4DefdEs2yrZuimX6zO+Lc+MXZFs32h/tb0FzauhU6VcU/fk6HZteF7i+Nh/14XdhRgmYSK6yxwRY77BXuO9E444IrbrgrdAOWSBAhhBFB1HLezdDIIoc8CigqdP/j7jwALmsbLw==
+  </data>
+ </layer>
+ <objectgroup name="Objects" width="22" height="22">
+  <object name="Exit" type="GotoArea" x="65" y="46" width="22" height="32"/>
+  <object name="Player" type="StartPlayer" x="5" y="100" width="29" height="50"/>
+  <object name="Estudios" type="OpenWeb" x="15" y="231" width="65" height="25"/>
+ </objectgroup>
+ <layer name="Capa de patrones 9" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwUADAAeQAAE=
+  </data>
+ </layer>
+</map>
