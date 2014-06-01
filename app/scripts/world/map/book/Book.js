@@ -6,8 +6,8 @@ define([], function () {
         var spriteBook;
 
         var loader;
-        var wBook=30;
-        var hBook=30;
+        var wBook=32;
+        var hBook=32;
 
         var scaleBook=0.8;
 
@@ -22,6 +22,8 @@ define([], function () {
             var spriteSheetBook = new window.createjs.SpriteSheet(data);
 
             spriteBook = new window.createjs.Sprite(spriteSheetBook);
+            spriteBook.framerate = 5;
+
             spriteBook.scaleX = spriteBook.scaleY = scaleBook;
 
         };

@@ -119,17 +119,17 @@
                  "y":100
                 }, 
                 {
-                 "height":25,
-                 "name":"Estudios",
+                 "height":55,
+                 "name":"Formation",
                  "properties":
                     {
 
                     },
                  "type":"OpenWeb",
                  "visible":true,
-                 "width":65,
+                 "width":68,
                  "x":15,
-                 "y":231
+                 "y":213
                 }],
          "opacity":1,
          "type":"objectgroup",

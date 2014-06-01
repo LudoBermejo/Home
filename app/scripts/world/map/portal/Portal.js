@@ -24,6 +24,8 @@ define([], function () {
             spritePortal = new window.createjs.Sprite(spriteSheetPortal);
             spritePortal.scaleX = spritePortal.scaleY = scalePortal;
 
+            spritePortal.framerate = 15;
+
         };
 
 

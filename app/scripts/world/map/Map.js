@@ -202,7 +202,6 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
 
                         if (collision) {
-                            console.log("COLISIONO")
                             return true;
                         }
 
@@ -340,7 +339,6 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                         }
 
 
-                        console.log(hasLastArea);
                         if(!hasLastArea) lastArea = null;
                         return true;
                     }

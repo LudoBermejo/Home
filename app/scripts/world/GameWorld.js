@@ -11,7 +11,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
         var handleComplete = function () {
 
 
-            window.createjs.Ticker.timingMode = window.createjs.Ticker.RAF_SYNCHED;
+            //window.createjs.Ticker.timingMode = window.createjs.Ticker.RAF_SYNCHED;
             window.createjs.Ticker.addEventListener("tick", tick);
 
 
@@ -36,9 +36,10 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
 
         };
 
-        function tick() {
+        function tick(event) {
+            if(event.paused) return;
             Ludo.movement();
-            stage.update();
+            stage.update(event);
         }
 
         GameWorld.init = function () {
@@ -73,7 +74,8 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/BookSprite.png", id: "Book"},
                 {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"},
                 {src: "assets/map/Training.json", id: "TrainingJSON"},
-                {src: "assets/map/Interior.png", id: "TrainingImage"}
+                {src: "assets/map/Interior.png", id: "TrainingImage"},
+                {src: "assets/web/Formation.html", id: "Formation"}
 
               ];
 

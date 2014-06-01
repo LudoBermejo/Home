@@ -46,7 +46,7 @@
  <objectgroup name="Objects" width="22" height="22">
   <object name="Exit" type="GotoArea" x="65" y="46" width="22" height="32"/>
   <object name="Player" type="StartPlayer" x="5" y="100" width="29" height="50"/>
-  <object name="Estudios" type="OpenWeb" x="15" y="231" width="65" height="25"/>
+  <object name="Formation" type="OpenWeb" x="15" y="213" width="68" height="55"/>
  </objectgroup>
  <layer name="Capa de patrones 9" width="22" height="22">
   <data encoding="base64" compression="zlib">

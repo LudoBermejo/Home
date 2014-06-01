@@ -22,6 +22,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
         var speed = 5;
 
+        var KEYCODE_SPACE = 32;		//usefull keycode
         var KEYCODE_UP = 38;		//usefull keycode
         var KEYCODE_DOWN = 40;		//usefull keycode
         var KEYCODE_LEFT = 37;		//usefull keycode
@@ -41,21 +42,68 @@ define(["preloadjs", "collisionDetection"], function () {
                 if (!e) {
                     e = window.event;
                 }
+
+                if( document.getElementById("timeline"))
+                {
+                    var timeline =document.getElementById("timeline");
+
+                    for(var i=0;i<=timeline.getElementsByClassName("radio").length-1;i++)
+                    {
+                        if(timeline.getElementsByClassName("radio")[i].checked)
+                        {
+                            var before = i-1;
+                            var after = i+1;
+                            if(before < 0) before = 0;
+                            if(after  > timeline.getElementsByClassName("radio").length-1) after = timeline.getElementsByClassName("radio").length-1;
+
+                            var current = timeline.getElementsByClassName("radio")[i];
+                            before = timeline.getElementsByClassName("radio")[before];
+                            after = timeline.getElementsByClassName("radio")[after];
+                            break;
+                        }
+                    }
+
+                }
+
                 switch (e.keyCode) {
+                    case KEYCODE_SPACE:
+                        window.createjs.Ticker.setPaused(false);
+                        document.getElementById("info").style.display="none";
+                        break;
                     case KEYCODE_UP:
-                    case KEYCODE_S:
+                    case KEYCODE_W:
+                        if(before)
+                        {
+                            current.checked = false;
+                            before.checked = true;
+                        }
                         hasMoveUp = true;
                         break;
                     case KEYCODE_DOWN:
-                    case KEYCODE_A:
+                    case KEYCODE_S:
+                        if(after)
+                        {
+                            current.checked = false;
+                            after.checked = true;
+                        }
                         hasMoveDown = true;
                         break;
                     case KEYCODE_LEFT:
-                    case KEYCODE_D:
+                    case KEYCODE_A:
+                        if(before)
+                        {
+                            current.checked = false;
+                            before.checked = true;
+                        }
                         hasMoveLeft = true;
                         break;
                     case KEYCODE_RIGHT:
-                    case KEYCODE_W:
+                    case KEYCODE_D:
+                        if(after)
+                        {
+                            current.checked = false;
+                            after.checked = true;
+                        }
                         hasMoveRight = true;
                         break;
 
@@ -147,7 +195,8 @@ define(["preloadjs", "collisionDetection"], function () {
             spriteLudo.width = wLudo * spriteLudo.scaleX;
             spriteLudo.height = hLudo * spriteLudo.scaleY;
 
-            console.log(speed);
+            spriteLudo.framerate = 10;
+
 
             speed *=area.container.scaleX;
 
@@ -164,7 +213,6 @@ define(["preloadjs", "collisionDetection"], function () {
                 spriteLudo.x = originalData.x;
                 spriteLudo.y = originalData.y;
                 speed = originalData.lastSpeed;
-                console.log(spriteLudo.x + ":" + spriteLudo.y);
                 getCollision = originalData.getCollision;
                 getTriggers = originalData.getTriggers;
 
@@ -184,10 +232,8 @@ define(["preloadjs", "collisionDetection"], function () {
 
         Ludo.movement = function () {
 
-            console.log(spriteLudo.parent.width);
-
             if (hasMoveUp) {
-                console.log(speed);
+
                 if (spriteLudo.currentAnimation !== "up") {
                     spriteLudo.gotoAndPlay("up", 1);
                 }
@@ -230,11 +276,9 @@ define(["preloadjs", "collisionDetection"], function () {
             else if (hasMoveRight) {
                 if (!hasMoveUp && !hasMoveDown) {
                     if (spriteLudo.currentAnimation !== "right") {
-                        spriteLudo.gotoAndPlay("right", 1);
+                        spriteLudo.gotoAndPlay("right");
                     }
                 }
-
-                console.log(spriteLudo.parent.width);
 
                 if (!getCollision(spriteLudo,speed,0) && (spriteLudo.x +speed < spriteLudo.parent.width)) {
                     spriteLudo.x += speed;
@@ -243,7 +287,11 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
             }
 
-            if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) {spriteLudo.currentAnimationFrame = 0;}
+            if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) {
+                spriteLudo.currentAnimationFrame = 0;
+                spriteLudo.stop();
+
+            }
 
 
         };

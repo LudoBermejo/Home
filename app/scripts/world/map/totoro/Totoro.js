@@ -25,6 +25,8 @@ define(["preloadjs", "collisionDetection"], function () {
             spriteTotoro = new window.createjs.Sprite(spriteSheetTotoro);
             spriteTotoro.scaleX = spriteTotoro.scaleY = scaleTotoro;
 
+            spriteTotoro.framerate = 15;
+
         };
 
 

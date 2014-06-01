@@ -34,7 +34,14 @@ module.exports = function (grunt) {
                     baseUrl        : '<%= config.app %>/scripts/',
                     name           : 'main',
                     mainConfigFile : '<%= config.app %>/scripts/main.js',
-                    out            : '.tmp/concat/scripts/main.js'
+                    out            : '.tmp/concat/scripts/main.js',
+                    useStrict      : true,
+                    wrap           : true,
+                    inlineText     : true,
+                    stubModules    : ['text'],
+                    paths: {
+                        'text': 'components/text' // relative to baseUrl
+                    }
                 }
             }
         },

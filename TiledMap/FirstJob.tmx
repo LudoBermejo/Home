@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="22" height="22" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="Interior" tilewidth="16" tileheight="16">
+  <image source="Interior/Interior.png" width="560" height="816"/>
+ </tileset>
+ <layer name="Fondo" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJyzZWRgsB3Fo3gUj+JRPIpH8YBiAEXgdTk=
+  </data>
+ </layer>
+ <layer name="Mesas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2Dog0hmBoYoZvL5uEANUE0tM/n8UTAKiAGj6XcUgAAAvMYNwQ==
+  </data>
+ </layer>
+ <layer name="CollisionMuros" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJyTY2VgkAdiBSBWBGIlIFYGYg4GyrAj0AwnIHYGYhcgdgViNyDWZqAMpwDNSAXiNCBOB+IMIM4EYi0GynA70IwOIO4E4i4g7gbiHiD2ZaAMD0XADMTsUJyHxCaWjwuoMSDCeyIDavgTw8cFPJHYW9DkSOUjgywk9k00OVL5yKAXif0HTY5U/ijABKPpFwJG0+/QAwBgDzZZ
+  </data>
+ </layer>
+ <layer name="Capa de patrones 7" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANFjExMCwG4iVAvJSJNDF84ChQzTEgPg7EJ5hIE8MHXgDVvATiV0D8mok0saECdtLI3DtofDFmBgZxZgRfAsiWZEZVU43ELgPiciLssQSaYYVkjjWQbYNm7jwk9kwgnkWEuaNgFCCDSiCuQuJXoMkXAXExEl8YmAZF0NIhNjAHiOci8WejyU8F4mlIfDOgmeZEmDsKqAtsgeW6HQ3K9gSgmYk0MLcZaGYLEAMAOxQqnw==
+  </data>
+ </layer>
+ <layer name="Ordenadores" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B+wJKJgcGKiXw+LhADVBPLRD5/FIwCYsBo+h0FtAQAHx8JoQ==
+  </data>
+ </layer>
+ <layer name="Chicos" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztkrkJgFAQBTf6PSpoJQpaifcBWoX3AdqSL/MlgpkIO9EMPDZaEUX5P5kRyc3dFtymduAudQSPqZ+YsJlp58F96gAeUnfw/sVdRWES/ExKf1PAS+oKXlM38PbFnw3YjLRb4Cv1Bt+pD/ip//sZF8mSFUE=
+  </data>
+ </layer>
+ <layer name="CollisionSillas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BogSwWBoZsFuqb2ws0sw/N3E1A/mYW8vkgsAHI34gmdhXIv8ZCPh8ELgP5V2gQDqNg+ABqpF9sgBrpdxRgAgADnR4Z
+  </data>
+ </layer>
+</map>

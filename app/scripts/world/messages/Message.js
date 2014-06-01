@@ -6,9 +6,14 @@ define([], function (Font) {
         var messages;
         var avatar;
         var layerMessage;
+        var layerMessageWindow;
 
         var lastMessage;
         var lastTextFieldMessage;
+
+        var lastMessageWindow;
+        var lastTextFieldMessageWindow;
+
 
         var self = Message;
         Message.init = function (st, load) {
@@ -49,6 +54,24 @@ define([], function (Font) {
             layerMessage.addChild(lastTextFieldMessage);
             layerMessage.alpha = 0.01;
 
+            layerMessageWindow = new window.createjs.Container();
+
+            var backgroundWindow = new window.createjs.Shape();
+
+            backgroundWindow.graphics.beginFill("gray").drawRoundRect(25,25,stage.canvas.width-50,stage.canvas.height-50,5);
+            backgroundWindow.graphics.beginFill("blue").drawRoundRect(50,50,stage.canvas.width-100,stage.canvas.height-100,5);
+
+            backgroundWindow.x = 0;
+            backgroundWindow.y = 0;
+
+            background.alpha = 0.6;
+            layerMessageWindow.addChild(backgroundWindow);
+            //layerMessage.visible = false;
+            stage.addChild(layerMessageWindow);
+
+            layerMessageWindow.alpha = 0.01;
+
+
         };
 
         Message.draw = function (text) {
@@ -63,8 +86,6 @@ define([], function (Font) {
                 {
                     if(i === text)
                     {
-                        console.log("NET");
-
                         lastTextFieldMessage.text = messages[i];
 
                         layerMessage.visible = true;
@@ -77,14 +98,36 @@ define([], function (Font) {
             }
         };
 
+        Message.drawWindow = function (text) {
+
+            if(lastMessageWindow != text)
+            {
+                lastMessageWindow = text;
+                layerMessageWindow.alpha = 1;
+
+
+                for(var i in messages)
+                {
+                    if(i === text)
+                    {
+                        lastTextFieldMessageWindow.text = messages[i];
+
+                        layerMessageWindow.visible = true;
+
+                        break;
+                    }
+                }
+
+
+            }
+        };
+
         Message.undraw = function (text) {
 
             lastMessage = null;
+            lastMessageWindow = null;
             layerMessage.visible = false;
-
-
-
-
+            layerMessageWindow.visible = false;
 
         };
 
