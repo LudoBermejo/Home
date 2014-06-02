@@ -1,4 +1,4 @@
-define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message"], function (preload, Ludo, Map, Message) {
+define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message","world/intro/Intro"], function (preload, Ludo, Map, Message,Intro) {
         //return an object to define the "my/shirt" module.
 
         var GameWorld = {};
@@ -20,21 +20,28 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
             loaderBar = null;
 
             //window.createjs.Ticker.timingMode = window.createjs.Ticker.RAF_SYNCHED;
-            window.createjs.Ticker.addEventListener("tick", tick);
-
-
             window.createjs.Ticker.setFPS(40);
 
 
-            Map.init(stage, loader);
-            Ludo.init(stage, loader, Map.getCollision, Map.getTriggers);
-            Message.init(stage, loader);
+            Intro.init(stage,loader);
 
-            Map.message = Message;
-
-            Map.onChangeArea = function(area)
+            Intro.onEnd = function()
             {
-                Ludo.changeArea(area);
+              window.createjs.Ticker.addEventListener("tick", tick);
+
+                Map.init(stage, loader);
+                Ludo.init(stage, loader, Map.getCollision, Map.getTriggers);
+                Message.init(stage, loader);
+
+                Map.message = Message;
+
+                Map.onChangeArea = function(area)
+                {
+                    Ludo.changeArea(area);
+                };
+
+                stage.update();
+
             };
 
 
@@ -103,13 +110,15 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/map/MapaLudo.png", id: "MapImage"},
                 {src: "assets/messages/messages.json", id: "MapMessages"},
                 {src: "assets/TotoroSprite.png", id: "Totoro"},
+                {src: "assets/CursorSprite.png", id: "Cursor"},
                 {src: "assets/PortalSprite.png", id: "Portal"},
                 {src: "assets/BookSprite.png", id: "Book"},
                 {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"},
                 {src: "assets/map/Training.json", id: "TrainingJSON"},
+                {src: "assets/intro/intro.json", id: "IntroJSON"},
                 {src: "assets/map/Jobs.json", id: "JobsJSON"},
                 {src: "assets/map/Interior.png", id: "SecundaryImage"},
-                {src: "assets/web/Formation.html", id: "Formation"}
+                {src: "assets/web/Formation.html", id: "Formation"},
 
               ];
 

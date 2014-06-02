@@ -1,0 +1,50 @@
+{
+    "messages": [
+        {
+            "text": "Hi!\n\nMi name is Ludo"
+        },
+        {
+            "text": "And I'm a developer"
+        },
+        {
+            "text": "A bleeding edge \n\nsoftware developer"
+        },
+        {
+            "text": "Do you wanna\n\nplay with my website?"
+        },
+        {
+            "text": "You can move me\n\nwith your cursor keys"
+        },
+        {
+            "text": "Up",
+            "animation": "up",
+            "cursor": "up"
+        },
+        {
+            "text": "Down",
+            "animation": "down",
+            "cursor": "down"
+        },
+        {
+            "text": "Left",
+            "animation": "left",
+            "cursor": "left"
+        },
+        {
+            "text": "Right",
+            "animation": "right",
+            "cursor": "right"
+        },
+        {
+            "text": "This is my",
+            "animation": "stop",
+            "sprite": "Portal"
+        }
+
+
+
+
+    ]
+
+
+}
