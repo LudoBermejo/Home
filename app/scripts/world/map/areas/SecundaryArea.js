@@ -274,6 +274,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                         }
                         else if(layerObjects.getChildAt(i).name.split("_")[1] == "OpenWeb") {
 
+
                             if(lastWebOpen !== layerObjects.getChildAt(i).name.split("_")[0])
                             {
                                 lastWebOpen = layerObjects.getChildAt(i).name.split("_")[0]
@@ -307,7 +308,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
             hTile = mapData.tilesets[0].tileheight;
 
             var imageData = {
-                images: [ load.getResult(internalName + "Image") ],
+                images: [ load.getResult("SecundaryImage") ],
                 frames: {
                     width: wTile,
                     height: hTile

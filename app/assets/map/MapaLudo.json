@@ -238,6 +238,19 @@
                  "width":47,
                  "x":192,
                  "y":154
+                }, 
+                {
+                 "height":63,
+                 "name":"Jobs",
+                 "properties":
+                    {
+
+                    },
+                 "type":"GotoArea",
+                 "visible":true,
+                 "width":57,
+                 "x":372,
+                 "y":269
                 }],
          "opacity":1,
          "type":"objectgroup",

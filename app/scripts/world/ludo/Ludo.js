@@ -198,7 +198,7 @@ define(["preloadjs", "collisionDetection"], function () {
             spriteLudo.framerate = 10;
 
 
-            speed *=area.container.scaleX;
+            //speed *= 1.5;
 
             getCollision = area.getCollision;
             getTriggers = area.getTriggers;

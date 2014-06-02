@@ -8,8 +8,16 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
         var stage;
 
 
+        var loaderWidth = 300;
+        var loaderColor;
+        var loaderBar;
+        var bar;
+
         var handleComplete = function () {
 
+            stage.removeChild(loaderBar);
+
+            loaderBar = null;
 
             //window.createjs.Ticker.timingMode = window.createjs.Ticker.RAF_SYNCHED;
             window.createjs.Ticker.addEventListener("tick", tick);
@@ -21,8 +29,6 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
             Map.init(stage, loader);
             Ludo.init(stage, loader, Map.getCollision, Map.getTriggers);
             Message.init(stage, loader);
-
-            console.log(Message);
 
             Map.message = Message;
 
@@ -39,6 +45,33 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
         function tick(event) {
             if(event.paused) return;
             Ludo.movement();
+            stage.update(event);
+        }
+
+        function makeLoaderBar()
+        {
+            var barHeight = 20;
+            loaderColor = createjs.Graphics.getRGB(247,0,0);
+            loaderBar = new createjs.Container();
+
+            bar = new createjs.Shape();
+            bar.graphics.beginFill(loaderColor).drawRect(0, 0, 1, barHeight).endFill();
+
+
+            var bgBar = new createjs.Shape();
+            var padding = 3
+            bgBar.graphics.setStrokeStyle(1).beginStroke(loaderColor).drawRect(-padding/2, -padding/2, loaderWidth+padding, barHeight+padding);
+
+            loaderBar.x = stage.width - loaderWidth>>1;
+            loaderBar.y = stage.height - barHeight>>1;
+            loaderBar.addChild(bar, bgBar);
+            stage.addChild(loaderBar)
+
+
+        }
+
+        function handleProgress(event) {
+            bar.scaleX = event.loaded * loaderWidth;
             stage.update(event);
         }
 
@@ -74,16 +107,22 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/BookSprite.png", id: "Book"},
                 {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"},
                 {src: "assets/map/Training.json", id: "TrainingJSON"},
-                {src: "assets/map/Interior.png", id: "TrainingImage"},
+                {src: "assets/map/Jobs.json", id: "JobsJSON"},
+                {src: "assets/map/Interior.png", id: "SecundaryImage"},
                 {src: "assets/web/Formation.html", id: "Formation"}
 
               ];
 
+            makeLoaderBar();
             loader = new window.createjs.LoadQueue(false);
+            loader.addEventListener("progress", handleProgress);
             loader.addEventListener("complete", handleComplete);
             loader.loadManifest(manifest);
 
+
         };
+
+
 
 
         return GameWorld;

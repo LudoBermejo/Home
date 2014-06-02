@@ -99,5 +99,6 @@
   <object name="Aficiones" type="Message" x="424" y="430" width="28" height="32"/>
   <object name="Fortalezas" type="Message" x="995" y="299" width="33" height="36"/>
   <object name="Training" type="GotoArea" x="192" y="154" width="47" height="22"/>
+  <object name="Jobs" type="GotoArea" x="372" y="269" width="57" height="63"/>
  </objectgroup>
 </map>
