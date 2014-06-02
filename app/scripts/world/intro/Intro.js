@@ -5,6 +5,9 @@ define([], function () {
         var ludo;
         var spriteLudo;
         var spriteCursor;
+        var spritePortal;
+        var spriteBook;
+        var spirteTotoro;
         var loader;
 
         var wLudo = 32;
@@ -18,9 +21,13 @@ define([], function () {
         var text = null;
         var KEYCODE_SPACE = 32;		//usefull keycode
 
+        var KEYCODE_ESCAPE = 27;		//usefull keycode
         var actualLetter = 0;
 
         var intervalText;
+
+        var actualSprite = null;
+        var intro = null;
 
 
         var createSpriteLudo = function () {
@@ -66,6 +73,62 @@ define([], function () {
 
         };
 
+        var createSprite = function (sprite) {
+
+            if(sprite == "Portal") {
+                var wPortal = 31;
+                var hPortal = 32;
+                var data = {
+                    images: [loader.getResult("Portal")],
+                    frames: {width: wPortal, height: hPortal}
+                };
+
+                var spriteSheetPortal = new window.createjs.SpriteSheet(data);
+
+                spritePortal = new window.createjs.Sprite(spriteSheetPortal);
+
+
+                spritePortal.framerate = 15;
+                return spritePortal;
+            } else if(sprite == "Totoro")
+            {
+                var wTotoro=29;
+                var hTotoro=32;
+
+                var data = {
+                    images: [loader.getResult("Totoro")],
+                    frames: {width: wTotoro, height: hTotoro}
+                };
+
+                var spriteSheetTotoro = new window.createjs.SpriteSheet(data);
+
+                spriteTotoro = new window.createjs.Sprite(spriteSheetTotoro);
+
+
+                spriteTotoro.framerate = 15;
+                return spriteTotoro;
+            } else if(sprite == "Book")
+            {
+                var wBook=32;
+                var hBook=32;
+
+                var data = {
+                    images: [loader.getResult("Book")],
+                    frames: {width: wBook, height: hBook}
+                };
+
+                var spriteSheetBook = new window.createjs.SpriteSheet(data);
+
+                spriteBook = new window.createjs.Sprite(spriteSheetBook);
+
+
+                spriteBook.framerate = 15;
+                return spriteBook
+            }
+
+        };
+
+
 
         var createMessageWindow = function()
         {
@@ -73,7 +136,7 @@ define([], function () {
 
             var backgroundWindow = new window.createjs.Shape();
 
-            backgroundWindow.graphics.beginFill("gray").drawRoundRect(25,25,525,225,5);
+            backgroundWindow.graphics.beginFill("gray").drawRoundRect(25,25,525,250,5);
             backgroundWindow.graphics.beginFill("blue").drawRoundRect(50,50,475,175,5);
 
             backgroundWindow.alpha = 0.6;
@@ -104,11 +167,16 @@ define([], function () {
                     text.y = 50;
                     layerMessageWindow.addChild(text);
                     var textSpace = new window.createjs.Text("Press space to continue", "32px VT323", "#ffffff");
+                    var textEscape = new window.createjs.Text("Press escape to skip", "32px VT323", "#ffffff");
 
                     textSpace.x = 220;
                     textSpace.y = 180;
 
+                    textEscape.x = 270;
+                    textEscape.y = 230;
+
                     layerMessageWindow.addChild(textSpace);
+                    layerMessageWindow.addChild(textEscape);
                 }
                 else
                 {
@@ -143,28 +211,34 @@ define([], function () {
                 spriteCursor.y = 100;
 
                 spriteCursor.gotoAndStop(messages[actualMessage].cursor );
+
+
             }
             else
             {
+                console.log("EO");
                 if(spriteCursor) spriteCursor.visible = false;
             }
 
-            if(messages[actualMessage].portal != undefined)
+            if(messages[actualMessage].sprite != undefined)
             {
-                if(spriteCursor == null)
+                if(actualSprite != null)
                 {
-                    spriteCursor = createSpriteCursor();
-                    layerMessageWindow.addChild(spriteCursor);
+                    layerMessageWindow.removeChild(actualSprite);
+                    actualSprite = null;
                 }
+                actualSprite = createSprite(messages[actualMessage].sprite)
+                actualSprite.x = 440;
+                actualSprite.y = 110;
 
-                spriteCursor.x = 380;
-                spriteCursor.y = 100;
+                layerMessageWindow.addChild(actualSprite);
 
-                spriteCursor.gotoAndStop(messages[actualMessage].cursor );
+                actualSprite.scaleX = actualSprite.scaleY = messages[actualMessage].scale;
+                actualSprite.play();
             }
             else
             {
-                if(spriteCursor) spriteCursor.visible = false;
+                if(actualSprite) actualSprite.visible = false;
             }
 
 
@@ -203,9 +277,28 @@ define([], function () {
                         }
                         else {
                             actualMessage++;
-                            doMessaging();
+                            if(actualMessage <= messages.length-1)
+                            {
+                                doMessaging();
+                            }
+                            else
+                            {
+                                st.removeChild(intro);
+                                document.onkeyup = null;
+                                Intro.onEnd();
+                                Intro = null;
+                            }
+
                         }
                         break;
+                    case KEYCODE_ESCAPE:
+
+                        st.removeChild(intro);
+                        document.onkeyup = null;
+                        Intro.onEnd();
+                        Intro = null;
+                        break;
+
 
 
                     default:
@@ -226,7 +319,7 @@ define([], function () {
             loader = load;
 
 
-            var intro = new createjs.Container();
+            intro = new createjs.Container();
 
             intro.addChild(createSpriteLudo());
 

@@ -39,7 +39,7 @@
   </data>
  </layer>
  <objectgroup name="Objects" width="22" height="22">
-  <object name="Player" type="StartPlayer" x="274" y="156" width="21" height="21"/>
+  <object name="Player" type="StartPlayer" x="273" y="152" width="21" height="21"/>
   <object name="Jobs" type="OpenWeb" x="4" y="122" width="40" height="40"/>
   <object name="Exit" type="GotoArea" x="320" y="185" width="22" height="32"/>
  </objectgroup>
