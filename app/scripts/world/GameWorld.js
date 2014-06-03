@@ -119,6 +119,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/map/Jobs.json", id: "JobsJSON"},
                 {src: "assets/map/Interior.png", id: "SecundaryImage"},
                 {src: "assets/web/Formation.html", id: "Formation"},
+                {src: "assets/web/Jobs.html", id: "Jobs"},
 
               ];
 

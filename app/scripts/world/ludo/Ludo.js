@@ -38,6 +38,15 @@ define(["preloadjs", "collisionDetection"], function () {
         var createKeyboard = function () {
             //allow for WASD and arrow control scheme
             function handleKeyDown(e) {
+
+                function getPos(el) {
+                    var my = el;
+                    // yay readability
+                    for (var lx=0, ly=0;
+                         el != null;
+                         lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+                    return {x: lx,y: ly, width: my.getElementsByName("relative").offsetWidth, height: my.getElementsByName("relative").offsetHeight};
+                }
                 //cross browser issues exist
                 if (!e) {
                     e = window.event;
@@ -85,6 +94,7 @@ define(["preloadjs", "collisionDetection"], function () {
                         {
                             current.checked = false;
                             after.checked = true;
+                            console.log(getPos(after.parentNode))
                         }
                         hasMoveDown = true;
                         break;
@@ -197,6 +207,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
             spriteLudo.framerate = 10;
 
+            spriteLudo.gotoAndStop("stop");
 
             //speed *= 1.5;
 

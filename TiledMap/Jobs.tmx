@@ -15,27 +15,27 @@
  </layer>
  <layer name="CollisionMuros" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJzt0jkKwkAUxvEHYvQUrmChp3AFUcFDuBex8BDuhXeJhSdRwaNY+A8IGeMUIzOV5IMf5MHkI8vLpUXyKKCIEsrIip06HQ000UIbHdTEzoiOMSaYYoY5qmJnTccGW+ywxwEDsfMPSSHz5ivXpnOYnifSx9CLeisSff+TfP4PkzmMT98SK6W3qzx7EHsX0zmg74yL0rtQzt1j95nOV/pueCi9R+XcM3bfr3OS77jYX11c7K8uLvZXFxf7q0uyv+7yAluRPYU=
+   eJzt0zkKwkAUxvEHYvQUrmChp3AFUcFDuBex8BDuhXeJhSdRwaNY+A8IGcMUIzNYqB/8IA8mH1l4maRIFjnkUUARabFTpaOGOhpoooWK2BnQMcQIY0wwRVnsLOlYYY0NttihJ3a+IQmknnzl2nQO0/FEuuh7UW9Jou9/kNf/YTKH8embY6H0tpVnD2LvYjoH9B1xUnpnyrlr7D7T+UzfBTeld6+cu8fue3f+53NxsRe6uNgLXVzshS4u9kKXX9yLB0rXPYU=
   </data>
  </layer>
  <layer name="Objetos" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJztk0kOAUEYRv+u3iMhhmMgIYZTkRjPQWJcGA7hAGjO4ABo7uDtlAqtO2kL4Ute8g+VV5sqkdeZKZE5LGCpgs28subMBrbgqGAzrxw5c4IzuCrY7Fuy+pD38GaftEVS9r1PU2fsxzNdrW5A08e9JRxlzVOhrhreqVYPYOjD+wtxLJEd7K1wvS6+C1xD9kb4a1GIhfznsvhykPfwtqGj9S1jX4O61sd5gwnjHT7LGCZaPzL2PehrfQFn0Yf3n9/MDeSXLkQ=
+   eJxjYMANFjExMCwG4iVAvJSJNDF84ChQzTEgPg7EJ5hIE8MHXgDVvATiV0D8mok0saECdtLI3DsE5MWYGRjEmRF8CSBbkhlVTTUSuwyIy4mw1xJohhWSOdZAtg2aufOQ2DOBeBYR5o4EcIKRgeEkEJ9ipK65r4HmvQHit1Q2lw+Y1/iBWIDKec4QaJ4REBsPQF6uBOIqJH4FmnwREBcj8YWBaVsELX1jA3OAeC4Sfzaa/FQgnobENwOaaU6EuaNgcAMA2lEuRA==
   </data>
  </layer>
- <layer name="Ordenadores" width="22" height="22" visible="0">
+ <layer name="Ordenadores" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DggCUTA4MVE/l8XCAGqCaWiXz+KBj6IIuFgSGbhfrm9gLN7IOaS830uwFo5kaoudRMv5eBZl6hQTiMAuoDACeNDrk=
+   eJxjYBgFo2DggCUTA4MVE/l8XCAGqCaWiXz+KBgFuEAWCwNDNgv1ze0FmtkHNZea+WID0MyNUHOpmS8uA828QoNwGMkAAL+RDrk=
   </data>
  </layer>
- <layer name="Chicos" width="22" height="22" visible="0">
+ <layer name="Chicos" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJztkrkJgFAQBTf6PSpoJQpaifcBWoX3AdqSL/MlgpGB7EQz8NhoRRTlf2RGJDd3W3Cb2oG71BE8pn5iwmamnQf3qQN4SN3B+xd3FYVJ8DMp/U0BL6kreE3dwNsXfzZgM9Juga/UG3ynPuCn/u9nXHWDFUE=
+   eJztkzkKgEAQBDfaPyroSxT0Jd4H6Cu8D9Av2ZkNImxkIFNRFTQbzSolCP8j00rl+m4LblM7cJc6gsfUb0zYzLTz4D51AA+pO3hv8K4gfEGCW0zpHgt4SV3Ba+oG3hrc74DNSLsFvlJv8J36gJ/yLx5cYEcVQQ==
   </data>
  </layer>
- <layer name="CollisionSillas" width="22" height="22" visible="0">
+ <layer name="CollisionSillas" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUEAs2sTAwbGYhn48LXAWqucZCPn8UjAJiwGj6HdwAANSdGQE=
+   eJxjYBgFo2AUEAs2sTAwbGYhn48LXAWqucZCPn8UjIKBBKP5gjoAAIhhGQE=
   </data>
  </layer>
  <objectgroup name="Objects" width="22" height="22">
