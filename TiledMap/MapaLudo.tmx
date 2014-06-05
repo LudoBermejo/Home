@@ -88,7 +88,7 @@
  <objectgroup name="Messages" width="69" height="63">
   <object name="Educacion" type="Message" x="154" y="196" width="35" height="32"/>
   <object name="PrimerTrabajo" type="Message" x="431" y="218" width="36" height="41"/>
-  <object name="SegundoTrabajo" type="Message" x="509" y="177" width="34" height="21"/>
+  <object name="Language" type="Message" x="509" y="177" width="34" height="21"/>
   <object name="TercerTrabajo" type="Message" x="572" y="220" width="37" height="35"/>
   <object name="CuartoTrabajo" type="Message" x="717" y="218" width="39" height="34"/>
   <object name="QuintoTrabajo" type="Message" x="863" y="216" width="31" height="36"/>

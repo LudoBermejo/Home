@@ -1,8 +1,8 @@
 {
-    "Educacion": "Esta es la casilla de educación",
-    "PrimerTrabajo": "Esta es la casilla de primer trabajo",
-    "SegundoTrabajo": "Esta es la casilla de segundo trabajo",
-    "TercerTrabajo": "Esta es la casilla de tercer trabajo",
+    "Educacion": "ACADEMIC ACHIEVEMENTS",
+    "PrimerTrabajo": "PROFESSIONAL EXPERIENCE",
+    "SegundoTrabajo": "LANGUAGES",
+    "TercerTrabajo": "SKILLS",
     "CuartoTrabajo": "Esta es la casilla de cuarto trabajo",
     "QuintoTrabajo": "Esta es la casilla de quinto trabajo",
     "Tecnologias": "Esta es la casilla de Tecnologías",

@@ -254,6 +254,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                     var collision = checkIntersection(rectHero, rectTrigger)
 
 
+
                     if (collision) {
 
                         console.log(layerObjects.getChildAt(i).name);
@@ -265,8 +266,33 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
                             if(layerObjects.getChildAt(i).name.split("_")[0] == "Exit")
                             {
+                                if (layerObjects) {
+                                    st.removeChild(layerObjects);
+                                    layerObjects = null;
+                                }
+
+
+                                st.removeChild(background);
+                                background = null;
+
+                                if (layerTotoros) {
+                                    st.removeChild(layerTotoros);
+                                    layerTotoros = null;
+                                }
+
+                                if (layerPortals) {
+                                    st.removeChild(layerPortals);
+                                    layerPortals = null;
+                                }
+
+                                if (layerBooks) {
+                                    st.removeChild(layerBooks);
+                                    layerBooks = null;
+                                }
                                 for(var j= 0;j<=self.onExitArea.length-1;j++)
                                 {
+
+
                                     self.onExitArea[j]();
                                 }
                             }
@@ -274,7 +300,6 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                         }
                         else if(layerObjects.getChildAt(i).name.split("_")[1] == "OpenWeb") {
 
-                            debugger;
                             if(lastWebOpen !== layerObjects.getChildAt(i).name.split("_")[0])
                             {
                                 lastWebOpen = layerObjects.getChildAt(i).name.split("_")[0]

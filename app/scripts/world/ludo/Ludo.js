@@ -45,7 +45,7 @@ define(["preloadjs", "collisionDetection"], function () {
                     for (var lx=0, ly=0;
                          el != null;
                          lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
-                    return {x: lx,y: ly, width: my.getElementsByName("relative").offsetWidth, height: my.getElementsByName("relative").offsetHeight};
+                    return {x: lx,y: ly, width: my.offsetWidth, height: my.offsetTop};
                 }
                 //cross browser issues exist
                 if (!e) {
@@ -85,7 +85,16 @@ define(["preloadjs", "collisionDetection"], function () {
                         {
                             current.checked = false;
                             before.checked = true;
+                            console.log(getPos(after.parentNode).y);
+                            console.log(getPos(document.getElementById("timeline")).y);
+                            console.log(parseInt(st.canvas.height));
+
+                            if(getPos(after.parentNode).y + getPos(document.getElementById("timeline")).y < parseInt(st.canvas.height))
+                            {
+                                document.getElementById("info").scrollTop -= 200;
+                            }
                         }
+
                         hasMoveUp = true;
                         break;
                     case KEYCODE_DOWN:
@@ -94,7 +103,11 @@ define(["preloadjs", "collisionDetection"], function () {
                         {
                             current.checked = false;
                             after.checked = true;
-                            console.log(getPos(after.parentNode))
+                            if(getPos(after.parentNode).y > parseInt(st.canvas.height)- getPos(document.getElementById("timeline")).y)
+                            {
+                                document.getElementById("info").scrollTop += 200;
+                            }
+
                         }
                         hasMoveDown = true;
                         break;
@@ -113,6 +126,10 @@ define(["preloadjs", "collisionDetection"], function () {
                         {
                             current.checked = false;
                             after.checked = true;
+                            if(getPos(after.parentNode).y > parseInt(st.canvas.height)- getPos(document.getElementById("timeline")).y)
+                            {
+                                document.getElementById("info").scrollTop += 200;
+                            }
                         }
                         hasMoveRight = true;
                         break;
