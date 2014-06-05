@@ -315,9 +315,11 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
             }
 
+            console.log(!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft)
             if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) {
+
                 spriteLudo.currentAnimationFrame = 0;
-                spriteLudo.stop();
+                spriteLudo.gotoAndStop("stop");
 
             }
 

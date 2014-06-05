@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="22" height="22" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="Interior" tilewidth="16" tileheight="16">
+  <image source="Interior/Interior.png" width="560" height="816"/>
+ </tileset>
+ <layer name="Suelo" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJybx8rAMB+I51GZPgjEh2hAU9udo+4dde+oe0fdO+reUfcOBvcCADkdVkQ=
+  </data>
+ </layer>
+ <layer name="CollisionWalls" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztircNgAAMBBGzEUYhjEIYhTAKYRRCzbm1XLii8klX3OuzNElyLLDETLXg2XRXWGODrdGCZ9PdYY8DjkYLnk33hDMuuBoteDbdG+544Gm04Nl0X3jjg6/RgmezPkEQBMH/fApBSok=
+  </data>
+ </layer>
+ <layer name="Sofa" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjILBD76z0MZcKVbqmWUFNMsaiG2A2JaK5o6CkQEAap4CHQ==
+  </data>
+ </layer>
+ <layer name="Sillas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4C+4AEzA8NDZurrY2ZhYGBhId1cQvpWkOHWUUA8GGrpYRSMAloBAP8qCAQ=
+  </data>
+ </layer>
+ <layer name="CollisionPersonajes2" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B4cIeVgeEuK4J/D8i+z4pbPTbwAKj+IZqe/yA+G4LPCGQzsaGqUQOqUcdjFzNQPQsbbnlcwBNopheJfiAVVDAyMFQyUq4GHcwGqp9DQA8xagYSbAGG/VYywn8tMK7X4Ynv60Azb5Bh7gWgmRfJSEcjCZCTVokByGmVHnYMNgAAh48WZg==
+  </data>
+ </layer>
+ <layer name="CollisionMesas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJzt0j8OAUEcxfGX7O40/lyAs0jUyKocA+EkCCdBOMkSDuDPBeh8tdvM7JhCMS/5lO8VvxkpJqZ6Xqn0TsPvtjKpnYXf7SRSN6neu9G544Fnqd8zUh8D5Bgat943NW5XRwPN0h3H7EwwxQxz49azZcHOEiussTH2jku27OywxwHHQLsFOyecccEVo0DbvrG9q2/P911/+Q8x/5cPag4h5w==
+  </data>
+ </layer>
+ <layer name="CollisionPersonajes" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B2gIOJgYGTiXx5XEAbqEcHjz588qTauZ6NgWEDG+VuQgeXgGZeJsJcdPCHlYHhLyuqGLnhiAzkgW5RQHMPLj+RE6/EuJGceCUl3N2A/nNH8+MvYFj+ZsWuHh1cBqq7AsRXgfgakp5MoJlZaObKAvlySGIeQLYnjvj+BjTrOxD/AOKfRLoFBrKBZubgMFcSKC4FxNJALENGWqMlOMHIwHASiE8xUtfc10Dz3gDxWyqbywdMY/xALEBhPkMHhkDzjIDYGIgB9WAbhw==
+  </data>
+ </layer>
+ <layer name="CollisionSillas" width="22" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDARQY2FgUGehvrmeQDO9aGDuKKAcVDPiliM3PWwC6tmMRx+56eEqUM81NH0cTAwMnEykm0UIaAPN1KGBuUMNAADTLAXt
+  </data>
+ </layer>
+ <objectgroup name="Capa de Objetos 1" width="22" height="22">
+  <object name="Interests" type="OpenWeb" x="150" y="157" width="72" height="49"/>
+  <object name="Player" type="StartPlayer" x="179" y="281" width="9" height="22"/>
+  <object name="Exit" type="GotoArea" x="313" y="295" width="31" height="55"/>
+ </objectgroup>
+</map>

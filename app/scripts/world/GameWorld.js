@@ -115,11 +115,17 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/BookSprite.png", id: "Book"},
                 {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"},
                 {src: "assets/map/Training.json", id: "TrainingJSON"},
+                {src: "assets/map/Interests.json", id: "InterestsJSON"},
                 {src: "assets/intro/intro.json", id: "IntroJSON"},
                 {src: "assets/map/Jobs.json", id: "JobsJSON"},
+                {src: "assets/map/Patents.json", id: "PatentsJSON"},
+                {src: "assets/map/Languages.json", id: "LanguagesJSON"},
                 {src: "assets/map/Interior.png", id: "SecundaryImage"},
                 {src: "assets/web/Formation.html", id: "Formation"},
                 {src: "assets/web/Jobs.html", id: "Jobs"},
+                {src: "assets/web/Languages.html", id: "Languages"},
+                {src: "assets/web/Patents.html", id: "Patents"},
+                {src: "assets/web/Interests.html", id: "Interests"}
 
               ];
 
