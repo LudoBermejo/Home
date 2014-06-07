@@ -10,12 +10,12 @@
  </layer>
  <layer name="CollisionWalls" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJztircNgAAMBBGzEUYhjEIYhTAKYRRCzbm1XLii8klX3OuzNElyLLDETLXg2XRXWGODrdGCZ9PdYY8DjkYLnk33hDMuuBoteDbdG+544Gm04Nl0X3jjg6/RgmezPkEQBMH/fApBSok=
+   eJztyrsNg2AMRWEUic3+wChARuExAxPwGIUko5BQc9xaRnJD5yN9xbWcHln2RIESSW3Jc9O7Qo0GL2NLnpveLTr0GIwteW56T5ixYDW25LnpveGND77Gljw3vXf88MdhbMlzs36iKIqi68b8HieSQVih
   </data>
  </layer>
  <layer name="Sofa" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjILBD76z0MZcKVbqmWUFNMsaiG2A2JaK5o6CkQEAap4CHQ==
+   eJxjYBgFo2AUjILBD76z0MZcKVbqm2kDNNOWBuaOguENAE3ZAZ4=
   </data>
  </layer>
  <layer name="Sillas" width="22" height="22">

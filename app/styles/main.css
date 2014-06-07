@@ -117,6 +117,10 @@ body {
      border-radius: 0.5em;
      position: relative;
  }
+ .content td
+ {
+     padding-left: 5px;
+ }
  .content:before, .content:after {
      content: "";
      width: 0;
@@ -170,14 +174,14 @@ body {
      background: #f98262;
  }
  .radio:checked ~ .content {
-     max-height: 180px;
+     max-height: 500px;
      border-color: #eee9dc;
      margin-right: 20px;
      -webkit-transform: translateX(20px);
      transition: max-height 0.4s linear, border-color 0.5s linear, -webkit-transform 0.2s linear;
  }
  .radio:checked ~ .content p {
-     max-height: 200px;
+     max-height: 500px;
      color: #eee9dc;
      transition: color 0.3s linear 0.3s;
  }

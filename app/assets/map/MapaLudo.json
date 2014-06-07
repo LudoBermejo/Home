@@ -199,7 +199,7 @@
                  "y":275
                 }, 
                 {
-                 "height":38,
+                 "height":23,
                  "name":"Interests",
                  "properties":
                     {
@@ -207,9 +207,22 @@
                     },
                  "type":"GotoArea",
                  "visible":true,
+                 "width":15,
+                 "x":893,
+                 "y":91
+                }, 
+                {
+                 "height":38,
+                 "name":"Talks",
+                 "properties":
+                    {
+
+                    },
+                 "type":"GotoArea",
+                 "visible":true,
                  "width":33,
-                 "x":888,
-                 "y":83
+                 "x":802,
+                 "y":273
                 }],
          "opacity":1,
          "type":"objectgroup",

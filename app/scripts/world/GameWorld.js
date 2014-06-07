@@ -116,6 +116,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/messages/TotoroAvatar.jpg", id: "TotoroAvatar"},
                 {src: "assets/map/Training.json", id: "TrainingJSON"},
                 {src: "assets/map/Interests.json", id: "InterestsJSON"},
+                {src: "assets/map/Talks.json", id: "TalksJSON"},
                 {src: "assets/intro/intro.json", id: "IntroJSON"},
                 {src: "assets/map/Jobs.json", id: "JobsJSON"},
                 {src: "assets/map/Patents.json", id: "PatentsJSON"},
@@ -125,7 +126,8 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/web/Jobs.html", id: "Jobs"},
                 {src: "assets/web/Languages.html", id: "Languages"},
                 {src: "assets/web/Patents.html", id: "Patents"},
-                {src: "assets/web/Interests.html", id: "Interests"}
+                {src: "assets/web/Interests.html", id: "Interests"},
+                {src: "assets/web/Talks.html", id: "Talks"}
 
               ];
 
