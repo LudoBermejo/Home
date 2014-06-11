@@ -11,6 +11,7 @@ define(["preloadjs", "collisionDetection"], function () {
         var hLudo = 48;
         var spriteLudo;
 
+        var stopHeroMove = false;
         var loader;
         var hasMoveLeft;
         var hasMoveRight;
@@ -21,6 +22,8 @@ define(["preloadjs", "collisionDetection"], function () {
         var getTriggers;
 
         var speed = 5;
+
+        var moveOnHorizontal;
 
         var KEYCODE_SPACE = 32;		//usefull keycode
         var KEYCODE_UP = 38;		//usefull keycode
@@ -35,7 +38,10 @@ define(["preloadjs", "collisionDetection"], function () {
 
         var originalData = {};
 
+        var enabled = true;
+
         var createKeyboard = function () {
+
             //allow for WASD and arrow control scheme
             function handleKeyDown(e) {
 
@@ -195,6 +201,11 @@ define(["preloadjs", "collisionDetection"], function () {
             st.addChild(spriteLudo);
         };
 
+        Ludo.setEnabled  = function(b)
+        {
+            enabled = b;
+        }
+
 
         Ludo.init = function (stage, load, gc, gt) {
 
@@ -216,6 +227,8 @@ define(["preloadjs", "collisionDetection"], function () {
 
         Ludo.changeArea = function(area)
         {
+            moveOnHorizontal = area.moveOnHorizontal;
+            stopHeroMove = area.stopHeroMove
             originalData = {x: spriteLudo.x, y: spriteLudo.y, scale: spriteLudo.scaleX, lastSpeed: speed, getCollision: getCollision, getTriggers: getTriggers, stage: spriteLudo.parent};
 
             spriteLudo.scaleX = spriteLudo.scaleY = 1;
@@ -233,6 +246,8 @@ define(["preloadjs", "collisionDetection"], function () {
 
             area.onExitArea.push( function()
             {
+                moveOnHorizontal = null;
+                stopHeroMove = false;
                 hasMoveRight = hasMoveLeft = hasMoveDown = hasMoveUp = false;
                 spriteLudo.scaleX = spriteLudo.scaleY = originalData.scale;
                 spriteLudo.width = wLudo * spriteLudo.scaleX;
@@ -269,11 +284,10 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 if (!getCollision(spriteLudo,0,-speed && (spriteLudo.y -speed > 0))) {
 
-
-                    spriteLudo.y -= speed;
-                    getTriggers(spriteLudo);
-                    st.customUpdate();
-
+                    if(!stopHeroMove) {
+                        spriteLudo.y -= speed;
+                        getTriggers(spriteLudo);
+                    }
                 }
             }
             else if (hasMoveDown) {
@@ -282,9 +296,11 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
 
                 if (!getCollision(spriteLudo,0, speed) && (spriteLudo.y +speed < spriteLudo.parent.height)) {
-                    spriteLudo.y += speed;
-                    getTriggers(spriteLudo);
-                    st.customUpdate();
+                    if(!stopHeroMove) {
+                        spriteLudo.y += speed;
+                        getTriggers(spriteLudo);
+                    }
+
                 }
             }
 
@@ -295,10 +311,15 @@ define(["preloadjs", "collisionDetection"], function () {
                     }
                 }
 
+
                 if (!getCollision(spriteLudo,-speed,0)&& (spriteLudo.x -speed > 0)) {
-                    spriteLudo.x -= speed;
-                    getTriggers(spriteLudo);
-                    
+                    if(!stopHeroMove) {
+                        spriteLudo.x -= speed;
+                        getTriggers(spriteLudo);
+                    }
+
+                    if(moveOnHorizontal) moveOnHorizontal(-speed);
+
                 }
             }
             else if (hasMoveRight) {
@@ -308,14 +329,18 @@ define(["preloadjs", "collisionDetection"], function () {
                     }
                 }
 
+
                 if (!getCollision(spriteLudo,speed,0) && (spriteLudo.x +speed < spriteLudo.parent.width)) {
-                    spriteLudo.x += speed;
-                    getTriggers(spriteLudo);
-                    st.customUpdate();
+                    if(!stopHeroMove)
+                    {
+                        spriteLudo.x += speed;
+                        getTriggers(spriteLudo);
+                    }
+
+                    if(moveOnHorizontal) moveOnHorizontal(speed);
                 }
             }
 
-            console.log(!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft)
             if (!hasMoveUp && !hasMoveDown && !hasMoveRight && !hasMoveLeft) {
 
                 spriteLudo.currentAnimationFrame = 0;

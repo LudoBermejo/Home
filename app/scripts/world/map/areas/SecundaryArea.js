@@ -24,7 +24,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
         var lastWebOpen;
 
 
-        SecundaryArea.init = function (stage, load, internalName) {
+        SecundaryArea.init = function (stage, load, internalName, backgroundImage) {
 
 
             Totoro.init(load);
@@ -40,6 +40,12 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
             this.startPlayerPosition = {};
 
             background = new window.createjs.Container();
+
+            if(backgroundImage)
+            {
+                background.addChild(new createjs.Bitmap(load.getResult(backgroundImage)));
+            }
+
             // layer initialization
             function initLayer(layerData, tilesetSheet, tilewidth, tileheight) {
 

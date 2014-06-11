@@ -147,7 +147,7 @@
                  "y":154
                 }, 
                 {
-                 "height":48,
+                 "height":36,
                  "name":"Jobs",
                  "properties":
                     {
@@ -155,9 +155,9 @@
                     },
                  "type":"GotoArea",
                  "visible":true,
-                 "width":88,
-                 "x":343,
-                 "y":265
+                 "width":33,
+                 "x":376,
+                 "y":275
                 }, 
                 {
                  "height":17,
@@ -223,6 +223,19 @@
                  "width":33,
                  "x":802,
                  "y":273
+                }, 
+                {
+                 "height":32,
+                 "name":"Technologies&Sky",
+                 "properties":
+                    {
+
+                    },
+                 "type":"GotoArea",
+                 "visible":true,
+                 "width":30,
+                 "x":519,
+                 "y":278
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -4,10 +4,16 @@
             "text": "Hi!\n\nMy name is Ludo"
         },
         {
-            "text": "And I'm a bleeding\n\nedge developer"
+            "text": "And I'm a code\n\nmonkey"
         },
         {
-            "text": "and also a CTO"
+            "text": "I'm also a\n\nScrum Master"
+        },
+        {
+            "text": "And a Tech leader"
+        },
+        {
+            "text": "Just the usual\n\nin startups :)"
         },
         {
             "text": "Do you wanna\n\nplay with my website?"
@@ -42,19 +48,19 @@
             "scale": 2
         },
         {
-            "text": "Totoro will teach you\n\nwhere they lead",
+            "text": "They lead to\n\ndifferent areas",
             "animation": "stop",
-            "sprite": "Totoro",
+            "sprite": "Portal",
             "scale": 2
         },
         {
-            "text": "Catch the books\n\nto get the info!",
+            "text": "Catch the books\n\nto get more info!",
             "animation": "stop",
             "sprite": "Book",
             "scale": 2
         },
         {
-            "text": "Can you get\n\nall the Easter eggs?"
+            "text": "Can you find\n\nthe Easter eggs?"
         },
         {
             "text": "Let's try it!!!"

@@ -1,4 +1,4 @@
-define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book","world/map/areas/SecundaryArea","preloadjs", "collisionDetection"], function (Totoro, Portal, Book, SecundaryArea) {
+define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book","world/map/areas/SecundaryArea","world/map/areas/TechnologiesArea","preloadjs", "collisionDetection"], function (Totoro, Portal, Book, SecundaryArea, TechnologiesArea) {
         //return an object to define the "my/shirt" module.
 
         var Map = {};
@@ -274,18 +274,27 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
 
 
-
                         if(layerObjects.getChildAt(i).name.split("_")[1] == "Message") {
                             self.message.draw(layerObjects.getChildAt(i).name.split("_")[0])
                         }
                         else if(layerObjects.getChildAt(i).name.split("_")[1] == "GotoArea") {
 
-                            if(lastArea != layerObjects.getChildAt(i).name.split("_")[0] ) {
 
-                                lastArea = layerObjects.getChildAt(i).name.split("_")[0]
+                            var checkName = layerObjects.getChildAt(i).name.split("_")[0].split("&")[0];
+                            var backgroundName= layerObjects.getChildAt(i).name.split("_")[0].split("&")[1];
+
+                            if(lastArea != checkName ) {
+
+                                lastArea = checkName;
                                 hasLastArea = true;
 
-                                var area = SecundaryArea;
+                                if(checkName != "Technologies") {
+                                    var area = SecundaryArea;
+                                }
+                                else
+                                {
+                                    var area = TechnologiesArea;
+                                }
 
                                 self.disable();
 
@@ -302,7 +311,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                                 areaContainer.scaleX = areaContainer.scaleY = 2;
 
-                                area.init(areaContainer, load, layerObjects.getChildAt(i).name.split("_")[0]);
+                                area.init(areaContainer, load, checkName,backgroundName);
                                 areaContainer.width = area.width;
                                 areaContainer.height = area.height;
 
@@ -337,6 +346,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
 
                         }
+
 
 
                         if(!hasLastArea) lastArea = null;
