@@ -21,6 +21,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
         var layerPortals;
         var disabled;
         var lastArea = "";
+        var lastWebOpen;
 
 
 
@@ -276,6 +277,17 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                         if(layerObjects.getChildAt(i).name.split("_")[1] == "Message") {
                             self.message.draw(layerObjects.getChildAt(i).name.split("_")[0])
+                        }
+                        else if(layerObjects.getChildAt(i).name.split("_")[1] == "OpenWeb") {
+
+                            if(lastWebOpen !== layerObjects.getChildAt(i).name.split("_")[0])
+                            {
+                                lastWebOpen = layerObjects.getChildAt(i).name.split("_")[0]
+                                window.createjs.Ticker.setPaused(true);
+                                document.getElementById("info").innerHTML = load.getResult(lastWebOpen);
+                                document.getElementById("info").style.display="";
+                                document.getElementById("info").focus();
+                            }
                         }
                         else if(layerObjects.getChildAt(i).name.split("_")[1] == "GotoArea") {
 
