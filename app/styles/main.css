@@ -35,6 +35,22 @@ body {
      width: 1040px; height:944px
  }
 
+ .alpha-div
+ {
+     font-size: 150%;
+     font-family: "VT323", sans-serif;
+     color: white;
+     position: absolute;
+     margin: auto;
+     top: 0px;
+     right: 0px;
+     bottom: 0;
+     left: 0px;
+     background-color: transparent;
+     width: 1040px; height:944px
+
+ }
+
  a:link    {color:white;}
  a:visited {color:white;}
  a:hover   {color:white;}

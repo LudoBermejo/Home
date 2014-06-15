@@ -137,6 +137,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                 {src: "assets/web/Patents.html", id: "Patents"},
                 {src: "assets/web/Credits.html", id: "Credits"},
                 {src: "assets/web/Interests.html", id: "Interests"},
+                {src: "assets/web/Contact.html", id: "Contact"},
                 {src: "assets/web/Talks.html", id: "Talks"},
                 {src: "assets/web/Technologies.json", id: "Technologies"}
 

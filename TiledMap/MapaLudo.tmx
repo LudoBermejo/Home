@@ -87,11 +87,10 @@
  </layer>
  <layer name="Textos" width="69" height="63">
   <data encoding="base64" compression="zlib">
-   eJzt1ltKAlEAgOHzmi7DagFBWSsos4cudq8nKwu67UKtLK12UNkuehXaj1aa0P8UIQjBWDLwf/DDzMDAucDhhCBJkqT/kk+EsEf7dEAFOqSjxLBHJv2dxsiwRzBYKeYzSmM03mduL3xfo3XaoE3aom3aod2YrMki41yiZVqhHK1GGHuFf6/phqpUo1u6o/uYrImie3WvJUXwwL35kZ6oTs/eo78VOV9LVKYLuqSrnjO3yXuL3uidPqhNHfqkLh2zpid0Smd0/mONJ3iepClK0zTN/HIPZpMhzFGG5ilLC8nBzV+SJEmSJEmSJEmSJEmSJEmS4uQLubol9g==
+   eJzt1klKA0EAQNHamhxD49pEO+oJHBdGjbMrNVFwukWch5gbxOgt3ArexzmCfxMRQRA6GgP/wYfuhoYaoKgQJEmS9FdWEiGs0hoVqEjrtJFo9cik33Pb0eoRNFcn8+miFHV/M7cbvs/QLM3RPC3QIi3RcpusyQTjzNEkTdE05WOM/Zh/T+iUzuicynRBlTZZE8V3515LiqHKvfmSanRF196jP5Q4X/donw7okI6+nLn3vD/QIz3RM73QK9XpjTZZ0y3aph3a/bTGGZ4jylI/DdDgD/dgKBnCMI3QKI3ReLJ585ckSWro4Y6Rpgz1Uh9F3jskSZIkSZIkSZIkSZIk/TPv5g8nZw==
   </data>
  </layer>
  <objectgroup name="Messages" width="69" height="63">
-  <object name="Working" type="Message" x="910" y="430" width="30" height="26"/>
   <object name="Working" type="Message" x="781" y="431" width="31" height="28"/>
   <object name="Working" type="Message" x="641" y="432" width="30" height="25"/>
   <object name="Working" type="Message" x="424" y="430" width="28" height="32"/>
@@ -103,5 +102,6 @@
   <object name="Talks" type="GotoArea" x="802" y="273" width="33" height="38"/>
   <object name="Technologies&amp;Sky" type="GotoArea" x="519" y="278" width="30" height="32"/>
   <object name="Credits" type="OpenWeb" x="1041" y="281" width="15" height="23"/>
+  <object name="Contact" type="OpenWeb" x="864" y="417" width="15" height="23"/>
  </objectgroup>
 </map>
