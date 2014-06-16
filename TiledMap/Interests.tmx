@@ -44,7 +44,7 @@
   </data>
  </layer>
  <objectgroup name="Capa de Objetos 1" width="22" height="22">
-  <object name="Interests" type="OpenWeb" x="150" y="157" width="72" height="49"/>
+  <object name="Interests" type="OpenWeb" x="150" y="142" width="71" height="78"/>
   <object name="Player" type="StartPlayer" x="179" y="281" width="9" height="22"/>
   <object name="Exit" type="GotoArea" x="313" y="295" width="31" height="55"/>
  </objectgroup>

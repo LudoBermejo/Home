@@ -44,7 +44,7 @@
   </data>
  </layer>
  <objectgroup name="Objects" width="22" height="22">
-  <object name="Exit" type="GotoArea" x="65" y="46" width="22" height="32"/>
+  <object name="Exit" type="GotoArea" x="66" y="35" width="23" height="68"/>
   <object name="Player" type="StartPlayer" x="5" y="100" width="29" height="50"/>
   <object name="Formation" type="OpenWeb" x="15" y="213" width="68" height="55"/>
  </objectgroup>

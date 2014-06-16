@@ -160,8 +160,9 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 if (customSprite === undefined) {
                     customSprite = obj.clone();
 
-                    customSprite.scaleX = customSprite.scaleY = 0.5;
+                    //customSprite.scaleX = customSprite.scaleY = 0.5;
                     customSprite.visible = false;
+                    //customSprite.alpha = .5;
 
 
                     stage.addChild(customSprite);
@@ -179,6 +180,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                 var arrayCheck = [];
 
+
                 for (var i = rect.x; i <= rect.x + rect.width; i++) {
                     for (var j = rect.y; j <= rect.y + rect.height; j++) {
 
@@ -189,21 +191,52 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 }
 
 
+
+
                 if (arrayCheck.length) {
 
-                    customSprite.x = obj.x + (obj.width / 2 - obj.width * 0.5 / 2);
-                    customSprite.y = obj.y + (obj.height / 2 - obj.height * 0.5 / 2);
+                    customSprite.x = obj.x;// + (obj.width / 2 - obj.width * 0.5 / 2);
+                    customSprite.y = obj.y;// + (obj.height / 2 - obj.height * 0.5 / 2);
 
                     customSprite.x += x;
                     customSprite.y += y;
 
 
+                    console.log(x + ":" + y)
                     for (i = 0; i <= arrayCheck.length - 1; i++) {
                         var collision = window.ndgmr.checkPixelCollision(arrayCheck[i], customSprite, 0, true);
 
 
+
                         if (collision) {
-                            return true;
+
+                            if(x > 0 && ((collision.x) > customSprite.x + obj.width/4))
+                            {
+                                console.log("BIEN x")
+                                return true;
+                            }
+
+
+                            if(x < 0 && ((collision.x) > customSprite.x ))
+                            {
+                                console.log("BIEN x")
+                                return true;
+                            }
+
+                            if(y > 0 && ((collision.y) > customSprite.y + obj.height/2))
+                            {
+                                console.log("BIEN y")
+                                return true;
+                            }
+
+                            if(y < 0 && ((collision.y) > customSprite.y ))
+                            {
+                                console.log("BIEN y")
+                                return true;
+                            }
+
+                            console.log("SIGO")
+
                         }
 
                     }

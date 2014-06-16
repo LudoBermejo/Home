@@ -18,6 +18,8 @@ define(["preloadjs", "collisionDetection"], function () {
         var hasMoveDown;
         var hasMoveUp;
 
+        var onSpaceKey;
+
         var getCollision;
         var getTriggers;
 
@@ -82,6 +84,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 switch (e.keyCode) {
                     case KEYCODE_SPACE:
+                        if(onSpaceKey) onSpaceKey();
                         window.createjs.Ticker.setPaused(false);
                         document.getElementById("info").style.display="none";
                         break;
@@ -186,7 +189,7 @@ define(["preloadjs", "collisionDetection"], function () {
 
             spriteLudo = new window.createjs.Sprite(spriteSheetLudo, "stop");
 
-            spriteLudo.scaleX = spriteLudo.scaleY *= 0.8;
+            spriteLudo.scaleX = spriteLudo.scaleY *= 0.67;
             spriteLudo.x = 0;
             spriteLudo.y = 0;
 
@@ -229,6 +232,8 @@ define(["preloadjs", "collisionDetection"], function () {
         {
             moveOnHorizontal = area.moveOnHorizontal;
             stopHeroMove = area.stopHeroMove
+
+            onSpaceKey = area.onSpaceKey;
             originalData = {x: spriteLudo.x, y: spriteLudo.y, scale: spriteLudo.scaleX, lastSpeed: speed, getCollision: getCollision, getTriggers: getTriggers, stage: spriteLudo.parent};
 
             spriteLudo.scaleX = spriteLudo.scaleY = 1;
@@ -248,6 +253,7 @@ define(["preloadjs", "collisionDetection"], function () {
             {
                 moveOnHorizontal = null;
                 stopHeroMove = false;
+                onSpaceKey = null;
                 hasMoveRight = hasMoveLeft = hasMoveDown = hasMoveUp = false;
                 spriteLudo.scaleX = spriteLudo.scaleY = originalData.scale;
                 spriteLudo.width = wLudo * spriteLudo.scaleX;
@@ -282,7 +288,7 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
 
 
-                if (!getCollision(spriteLudo,0,-speed && (spriteLudo.y -speed > 0))) {
+                if (!getCollision(spriteLudo,0,-speed) && (spriteLudo.y -speed > 0)) {
 
                     if(!stopHeroMove) {
                         spriteLudo.y -= speed;
@@ -296,6 +302,7 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
 
                 if (!getCollision(spriteLudo,0, speed) && (spriteLudo.y +speed < spriteLudo.parent.height)) {
+
                     if(!stopHeroMove) {
                         spriteLudo.y += speed;
                         getTriggers(spriteLudo);

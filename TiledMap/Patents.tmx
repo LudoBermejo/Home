@@ -39,7 +39,7 @@
   </data>
  </layer>
  <objectgroup name="Capa de Objetos 1" width="22" height="22">
-  <object name="Patents" type="OpenWeb" x="61" y="157" width="74" height="43"/>
+  <object name="Patents" type="OpenWeb" x="44" y="153" width="105" height="49"/>
   <object name="Player" type="StartPlayer" x="256" y="178" width="13" height="23"/>
   <object name="Exit" type="GotoArea" x="317" y="150" width="31" height="55"/>
  </objectgroup>

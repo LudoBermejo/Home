@@ -174,13 +174,17 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
             }
 
+            this.onSpaceKey = function()
+            {
+
+            }
 
             this.getCollision = function (obj, x, y) {
 
                 if (customSprite === undefined) {
                     customSprite = obj.clone();
 
-                    customSprite.scaleX = customSprite.scaleY = 0.5;
+                    //customSprite.scaleX = customSprite.scaleY = 0.5;
                     customSprite.visible = false;
 
 
@@ -211,8 +215,8 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
                 if (arrayCheck.length) {
 
-                    customSprite.x = obj.x + (obj.width / 2 - obj.width * 0.5 / 2);
-                    customSprite.y = obj.y + (obj.height / 2 - obj.height * 0.5 / 2);
+                    customSprite.x = obj.x;// + (obj.width / 2 - obj.width * 0.5 / 2);
+                    customSprite.y = obj.y;// + (obj.height / 2 - obj.height * 0.5 / 2);
 
                     customSprite.x += x;
                     customSprite.y += y;
@@ -224,7 +228,17 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
                         if (collision) {
 
-                            return true;
+                            if(x > 0 && ((collision.x) > customSprite.x + obj.width/4))
+                                return true;
+
+                            if(x < 0 && ((collision.x) > customSprite.x ))
+                                return true;
+
+                            if(y > 0 && ((collision.y) > customSprite.y + obj.height/2))
+                                return true;
+
+                            if(y < 0 && ((collision.y) > customSprite.y ))
+                                return true;
                         }
 
                     }

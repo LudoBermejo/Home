@@ -47,6 +47,46 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
             background = new window.createjs.Container();
 
 
+            function removeAll()
+            {
+                if (layerObjects) {
+                    st.removeChild(layerObjects);
+                    layerObjects = null;
+                }
+
+
+
+                st.removeChild(techContainer);
+                st.removeChild(cloudContainer);
+                st.removeChild(background);
+                st.removeChild(portal);
+
+                background = null;
+                cloudContainer = null;
+                techContainer = null;
+                portal = null;
+
+
+                if (layerPortals) {
+                    st.removeChild(layerPortals);
+                    layerTotoros = null;
+                }
+                if (layerTotoros) {
+                    st.removeChild(layerTotoros);
+                    layerTotoros = null;
+                }
+
+                st.removeChild(portal);
+
+                if (layerBooks) {
+                    st.removeChild(layerBooks);
+                    layerBooks = null;
+                }
+                for (var j = 0; j <= self.onExitArea.length - 1; j++) {
+                    self.onExitArea[j]();
+                }
+            }
+
             // layer initialization
             function initLayer(layerData, tilesetSheet, tilewidth, tileheight) {
 
@@ -98,6 +138,8 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
                 self.width = layerData.width * tilewidth - layerData.width * 2;
                 self.height = layerData.height * tileheight - layerData.height * 2;
+
+
 
 
                 var layer2 = layer.clone(true);
@@ -227,6 +269,10 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
             }
 
 
+            this.onSpaceKey = function()
+            {
+                removeAll();
+            }
             this.getCollision = function (obj, x, y) {
 
 
@@ -235,42 +281,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
                 if(collision)
                 {
-                    if (layerObjects) {
-                        st.removeChild(layerObjects);
-                        layerObjects = null;
-                    }
-
-
-
-                    st.removeChild(techContainer);
-                    st.removeChild(cloudContainer);
-                    st.removeChild(background);
-                    st.removeChild(portal);
-
-                    background = null;
-                    cloudContainer = null;
-                    techContainer = null;
-                    portal = null;
-
-
-                    if (layerPortals) {
-                        st.removeChild(layerPortals);
-                        layerTotoros = null;
-                    }
-                    if (layerTotoros) {
-                        st.removeChild(layerTotoros);
-                        layerTotoros = null;
-                    }
-
-                    st.removeChild(portal);
-
-                    if (layerBooks) {
-                        st.removeChild(layerBooks);
-                        layerBooks = null;
-                    }
-                    for (var j = 0; j <= self.onExitArea.length - 1; j++) {
-                        self.onExitArea[j]();
-                    }
+                   removeAll();
 
 
                 }
@@ -474,6 +485,10 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
             portal.gotoAndPlay(1);
 
             st.addChild(portal);
+
+            var lastTextFieldMessage = new window.createjs.Text("Press SPACE to exit", "24px VT323", "#ffffff");
+            lastTextFieldMessage.x = 50;
+            st.addChild(lastTextFieldMessage);
 
 
             background.cache(0, 0, mapData.tilewidth * mapData.width * 3, mapData.tileheight * mapData.height);
