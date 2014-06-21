@@ -45,7 +45,7 @@
  </layer>
  <layer name="CollisionTable" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJztzskNgDAMAEE7VMJZDtQC1XFWwlkJsLzyhfD1SiNFsmxFxLLe16pIhx4DRkwafq90IhVmbixYsWHHoX7+tZqdBic3rud/vBUOkfPz0GJ2E6TIkKP4cc+yLOsGkj0Pmw==
+   eJztzLkRgEAQA0EtAUIsEB1vJHDchcJ4eHwGlqaqrS2t5Nzz+pAGjJgwY4nv/+pKarDyY0PCjowS5/1tLZvuYnd3d865vzsAMTAMrQ==
   </data>
  </layer>
  <layer name="Textos" width="22" height="22">
@@ -53,8 +53,13 @@
    eJztzsENgCAUBNG9QCFSgoqCYv9lMR1w/DHZSd59JLdqT9KBExUXbjR0PHgx8KXo29i2LJUcfeGcc/9rAvKxAzQ=
   </data>
  </layer>
+ <layer name="TableNoCol" width="22" height="22" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztzMkRwCAQxMDZdSTmcP4RGpQDvGBU1V9Jzp3bH9KAUgoknlz/vjwKKho6vg1f59y9TWidAu8=
+  </data>
+ </layer>
  <objectgroup name="Capa de Objetos 1" width="22" height="22">
-  <object name="Languages" type="OpenWeb" x="139" y="98" width="74" height="43"/>
+  <object name="Languages" type="OpenWeb" x="149" y="82" width="53" height="71"/>
   <object name="Player" type="StartPlayer" x="289" y="255" width="9" height="22"/>
   <object name="Exit" type="GotoArea" x="316" y="40" width="31" height="55"/>
  </objectgroup>

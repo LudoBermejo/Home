@@ -7,6 +7,7 @@ require.config({
         'easeljs': '../../bower_components/easeljs/lib/easeljs-0.7.1.min',
         'preloadjs': '../../bower_components/PreloadJS/lib/preloadjs-NEXT.min',
         "collisionDetection": "components/ndgmr.Collision",
+        "easystart": "components/easystar-0.1.8.min",
         "text": "components/text"
     },
     shim: {

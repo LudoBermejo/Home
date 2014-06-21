@@ -83,7 +83,7 @@
          "name":"NoCollTable",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":22,
          "x":0,
          "y":0
@@ -93,7 +93,7 @@
          "name":"Capa de Objetos 1",
          "objects":[
                 {
-                 "height":43,
+                 "height":96,
                  "name":"Talks",
                  "properties":
                     {
@@ -101,9 +101,9 @@
                     },
                  "type":"OpenWeb",
                  "visible":true,
-                 "width":74,
-                 "x":139,
-                 "y":93
+                 "width":83,
+                 "x":136,
+                 "y":62
                 }, 
                 {
                  "height":23,

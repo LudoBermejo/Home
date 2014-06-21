@@ -1,4 +1,4 @@
-define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Book", "preloadjs", "collisionDetection"], function (Totoro, Portal, Book) {
+define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Book", "preloadjs", "collisionDetection", "easystart"], function (Totoro, Portal, Book) {
         //return an object to define the "my/shirt" module.
 
         var SecundaryArea = {};
@@ -12,6 +12,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
         var background;
         var arrayCollision = [];
+        var gridCollision = [];
 
         var customSprite;
 
@@ -22,11 +23,13 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
         var layerBooks;
 
         var lastWebOpen;
+        var lastPos = {};
+        var easystar;
 
 
         SecundaryArea.init = function (stage, load, internalName, backgroundImage) {
 
-
+            easystar = new EasyStar.js();
             Totoro.init(load);
             Portal.init(load);
             Book.init(load);
@@ -67,6 +70,16 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                         var idx = x + y * layerData.width;
                         // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
 
+                        if(!gridCollision[y]) {
+                            gridCollision[y] = [];
+                        }
+
+                        if(!gridCollision[y][x]) {
+                            gridCollision[y][x] = 0;
+                        }
+
+
+
                         if (layerData.data[idx] - 1 > -1) {
                             cellBitmap.gotoAndStop(layerData.data[idx] - 1);
                             // isometrix tile positioning based on X Y order from Tiled
@@ -81,6 +94,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                             if (layerData.name.indexOf("Collision") > -1) {
                                 //var text = new window.createjs.Text(x + ":" + y, "10px Arial", "#ff7700"); text.x =  x * tilewidth; text.y = y* tileheight;
                                 //layer.addChildAt(text, 0);
+                                gridCollision[y][x] = 1;
 
                                 arrayCollision[x + ":" + y] = cellBitmap;
                                 cellBitmap.name = layerData.name + ":" + x + ":" + y;
@@ -103,6 +117,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
 
                 background.addChild(layer);
+
 
             }
 
@@ -159,6 +174,10 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                     else if (objects[i].type == "OpenWeb")
                     {
                         var book = Book.getClone();
+
+                        book.addEventListener("click", onClickAutoMoveBook)
+
+                        book.area = shape;
                         layerBooks.addChild(book)
 
 
@@ -181,7 +200,11 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
             this.getCollision = function (obj, x, y) {
 
+
+                console.log("Debería crear el custom ", customSprite)
                 if (customSprite === undefined) {
+
+                    console.log("LO CREO");
                     customSprite = obj.clone();
 
                     //customSprite.scaleX = customSprite.scaleY = 0.5;
@@ -251,10 +274,81 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
             };
 
+            function onClickAutoMoveBook(evt)
+            {
+                console.log("PULSé",evt)
+                evt.preventDefault();
+
+                var obj = {};
+
+                if(evt.target.area.x + evt.target.area.width < customSprite.x)
+                {
+                    obj.localX = evt.target.area.x + evt.target.area.width-5
+                }
+                else  if(evt.target.area.x > customSprite.x)
+                {
+                    obj.localX = evt.target.area.x;
+                }
+                else
+                {
+                    obj.localX = customSprite.x ;
+                }
+
+                if(evt.target.area.y + evt.target.area.height < customSprite.y)
+                {
+                    obj.localY = evt.target.area.y + evt.target.area.height-5;
+                }
+                else if(evt.target.area.y > customSprite.y)
+                {
+                    obj.localY = evt.target.area.y;
+                }
+                else
+                {
+                    obj.localY = customSprite.y;
+                }
+
+
+                calculatePath(obj)
+                return false;
+            }
+
+            function onClickAutoMove(evt)
+            {
+                calculatePath(evt)
+            }
+
+            function calculatePath(evt)
+            {
+                lastWebOpen = null;
+                var destiny = {};
+
+                lastPos.x = Math.floor((customSprite.x) / (wTile - 1));
+                lastPos.y = Math.floor((customSprite.y) / (hTile - 1));
+
+                console.log(customSprite.x + ":" + customSprite.y);
+
+                destiny.x = Math.floor((evt.localX) / (wTile - 1));
+                destiny.y = Math.floor((evt.localY) / (hTile - 1));
+
+                console.log(arrayCollision[destiny.x + ":" + destiny.y])
+
+                easystar.findPath(lastPos.x, lastPos.y, destiny.x, destiny.y, function( path ) {
+                    console.log(path);
+                    if(path)
+                        if(self.onGotoPath) self.onGotoPath(path, customSprite, wTile, hTile);
+                });
+
+                easystar.calculate();
+
+            }
+
+
             var checkIntersection = function (rect1, rect2) {
                 if (rect1.x >= rect2.x + rect2.width || rect1.x + rect1.width <= rect2.x || rect1.y >= rect2.y + rect2.height || rect1.y + rect1.height <= rect2.y) return false;
                 return true;
             }
+
+            this.onGotoPath = null;
 
             this.onChangeArea = null;
 
@@ -291,9 +385,20 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                                     layerObjects = null;
                                 }
 
+                                arrayCollision = [];
+                                gridCollision = [];
 
+
+                                easystar = null;
+                                background.removeEventListener("click", onClickAutoMove);
                                 st.removeChild(background);
                                 background = null;
+
+                                if(customSprite)
+                                {
+                                    st.removeChild(customSprite)
+                                    customSprite = undefined;
+                                }
 
                                 if (layerTotoros) {
                                     st.removeChild(layerTotoros);
@@ -309,6 +414,8 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
                                     st.removeChild(layerBooks);
                                     layerBooks = null;
                                 }
+
+
                                 for(var j= 0;j<=self.onExitArea.length-1;j++)
                                 {
 
@@ -319,6 +426,7 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
                         }
                         else if(layerObjects.getChildAt(i).name.split("_")[1] == "OpenWeb") {
+
 
                             if(lastWebOpen !== layerObjects.getChildAt(i).name.split("_")[0])
                             {
@@ -374,6 +482,10 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
 
             }
 
+            easystar.setGrid(gridCollision);
+
+            easystar.setAcceptableTiles([0]);
+            easystar.enableDiagonals();
 
             if (layerObjects) {
                 st.addChild(layerObjects);
@@ -396,6 +508,10 @@ define(["world/map/totoro/Totoro", "world/map/portal/Portal", "world/map/book/Bo
             }
 
             background.cache(0, 0, mapData.tilewidth * mapData.width, mapData.tileheight * mapData.height);
+
+            background.addEventListener("click", onClickAutoMove);
+
+
 
         };
 

@@ -38,9 +38,15 @@ define(["preloadjs", "collisionDetection"], function () {
         var KEYCODE_S = 83;			//usefull keycode
 
 
+        var actualPath = [];
         var originalData = {};
 
         var enabled = true;
+        var autoMove = false;
+        var cSprite;
+        var wTile;
+        var hTile;
+
 
         var createKeyboard = function () {
 
@@ -50,28 +56,26 @@ define(["preloadjs", "collisionDetection"], function () {
                 function getPos(el) {
                     var my = el;
                     // yay readability
-                    for (var lx=0, ly=0;
+                    for (var lx = 0, ly = 0;
                          el != null;
                          lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
-                    return {x: lx,y: ly, width: my.offsetWidth, height: my.offsetTop};
+                    return {x: lx, y: ly, width: my.offsetWidth, height: my.offsetTop};
                 }
+
                 //cross browser issues exist
                 if (!e) {
                     e = window.event;
                 }
 
-                if( document.getElementById("timeline"))
-                {
-                    var timeline =document.getElementById("timeline");
+                if (document.getElementById("timeline")) {
+                    var timeline = document.getElementById("timeline");
 
-                    for(var i=0;i<=timeline.getElementsByClassName("radio").length-1;i++)
-                    {
-                        if(timeline.getElementsByClassName("radio")[i].checked)
-                        {
-                            var before = i-1;
-                            var after = i+1;
-                            if(before < 0) before = 0;
-                            if(after  > timeline.getElementsByClassName("radio").length-1) after = timeline.getElementsByClassName("radio").length-1;
+                    for (var i = 0; i <= timeline.getElementsByClassName("radio").length - 1; i++) {
+                        if (timeline.getElementsByClassName("radio")[i].checked) {
+                            var before = i - 1;
+                            var after = i + 1;
+                            if (before < 0) before = 0;
+                            if (after > timeline.getElementsByClassName("radio").length - 1) after = timeline.getElementsByClassName("radio").length - 1;
 
                             var current = timeline.getElementsByClassName("radio")[i];
                             before = timeline.getElementsByClassName("radio")[before];
@@ -84,22 +88,17 @@ define(["preloadjs", "collisionDetection"], function () {
 
                 switch (e.keyCode) {
                     case KEYCODE_SPACE:
-                        if(onSpaceKey) onSpaceKey();
+                        if (onSpaceKey) onSpaceKey();
                         window.createjs.Ticker.setPaused(false);
-                        document.getElementById("info").style.display="none";
+                        document.getElementById("info").style.display = "none";
                         break;
                     case KEYCODE_UP:
                     case KEYCODE_W:
-                        if(before)
-                        {
+                        if (before) {
                             current.checked = false;
                             before.checked = true;
-                            console.log(getPos(after.parentNode).y);
-                            console.log(getPos(document.getElementById("timeline")).y);
-                            console.log(parseInt(st.canvas.height));
 
-                            if(getPos(after.parentNode).y + getPos(document.getElementById("timeline")).y < parseInt(st.canvas.height))
-                            {
+                            if (getPos(after.parentNode).y + getPos(document.getElementById("timeline")).y < parseInt(st.canvas.height)) {
                                 document.getElementById("info").scrollTop -= 200;
                             }
                         }
@@ -108,12 +107,10 @@ define(["preloadjs", "collisionDetection"], function () {
                         break;
                     case KEYCODE_DOWN:
                     case KEYCODE_S:
-                        if(after)
-                        {
+                        if (after) {
                             current.checked = false;
                             after.checked = true;
-                            if(getPos(after.parentNode).y > parseInt(st.canvas.height)- getPos(document.getElementById("timeline")).y)
-                            {
+                            if (getPos(after.parentNode).y > parseInt(st.canvas.height) - getPos(document.getElementById("timeline")).y) {
                                 document.getElementById("info").scrollTop += 200;
                             }
 
@@ -122,8 +119,7 @@ define(["preloadjs", "collisionDetection"], function () {
                         break;
                     case KEYCODE_LEFT:
                     case KEYCODE_A:
-                        if(before)
-                        {
+                        if (before) {
                             current.checked = false;
                             before.checked = true;
                         }
@@ -131,12 +127,10 @@ define(["preloadjs", "collisionDetection"], function () {
                         break;
                     case KEYCODE_RIGHT:
                     case KEYCODE_D:
-                        if(after)
-                        {
+                        if (after) {
                             current.checked = false;
                             after.checked = true;
-                            if(getPos(after.parentNode).y > parseInt(st.canvas.height)- getPos(document.getElementById("timeline")).y)
-                            {
+                            if (getPos(after.parentNode).y > parseInt(st.canvas.height) - getPos(document.getElementById("timeline")).y) {
                                 document.getElementById("info").scrollTop += 200;
                             }
                         }
@@ -204,8 +198,7 @@ define(["preloadjs", "collisionDetection"], function () {
             st.addChild(spriteLudo);
         };
 
-        Ludo.setEnabled  = function(b)
-        {
+        Ludo.setEnabled = function (b) {
             enabled = b;
         }
 
@@ -224,12 +217,11 @@ define(["preloadjs", "collisionDetection"], function () {
             createSprite();
             createKeyboard();
 
-
+            getCollision(spriteLudo, 0, 0);
         };
 
 
-        Ludo.changeArea = function(area)
-        {
+        Ludo.changeArea = function (area) {
             moveOnHorizontal = area.moveOnHorizontal;
             stopHeroMove = area.stopHeroMove
 
@@ -249,8 +241,7 @@ define(["preloadjs", "collisionDetection"], function () {
             getCollision = area.getCollision;
             getTriggers = area.getTriggers;
 
-            area.onExitArea.push( function()
-            {
+            area.onExitArea.push(function () {
                 moveOnHorizontal = null;
                 stopHeroMove = false;
                 onSpaceKey = null;
@@ -269,17 +260,118 @@ define(["preloadjs", "collisionDetection"], function () {
             });
 
 
-
-            if(area.startPlayerPosition != null)
-            {
-                spriteLudo.x = area.startPlayerPosition.x ;
-                spriteLudo.y = area.startPlayerPosition.y ;
+            if (area.startPlayerPosition != null) {
+                spriteLudo.x = area.startPlayerPosition.x;
+                spriteLudo.y = area.startPlayerPosition.y;
             }
 
             area.container.addChild(spriteLudo)
+
+
+            getCollision(spriteLudo,0,0);
+        }
+
+        Ludo.gotoPath = function (path, customSprite, w, h) {
+            enabled = false;
+            autoMove = true;
+
+            actualPath = path;
+            cSprite = customSprite;
+            wTile = w;
+            hTile = h;
+        }
+
+        function doAutoMove() {
+            if (actualPath.length == 0) {
+                enabled = true;
+                autoMove = false;
+                getTriggers(spriteLudo);
+                spriteLudo.gotoAndStop("stop");
+
+            }
+            else {
+                var x = Math.floor((cSprite.x) / (wTile - 1));
+                var y = Math.floor((cSprite.y) / (hTile - 1));
+
+                var xSpeed = 0;
+                var ySpeed = 0;
+                if (x < actualPath[0].x) {
+                    xSpeed = speed*2;
+                }
+
+                if (x > actualPath[0].x) {
+                    xSpeed = -speed*2;
+                }
+
+                if (y < actualPath[0].y) {
+                    ySpeed = speed*2;
+                }
+
+                if (y > actualPath[0].y) {
+                    ySpeed = -speed*2;
+                }
+
+                if (xSpeed == 0 && ySpeed == 0) {
+                    actualPath.shift();
+
+
+                    spriteLudo.currentAnimationFrame = 0;
+
+                }
+                else {
+                    cSprite.x += xSpeed;
+                    cSprite.y += ySpeed;
+
+                    spriteLudo.x = cSprite.x;
+                    spriteLudo.y = cSprite.y - spriteLudo.height/2;
+
+
+
+
+
+                    if (ySpeed < 0) {
+
+                        if (spriteLudo.currentAnimation !== "up") {
+                            spriteLudo.gotoAndPlay("up", 1);
+                        }
+
+                    }
+                    else if (ySpeed > 0) {
+                        if (spriteLudo.currentAnimation !== "down") {
+                            spriteLudo.gotoAndPlay("down", 1);
+                        }
+
+                    }
+
+                    if (xSpeed < 0) {
+                        if (!hasMoveUp && !hasMoveDown) {
+                            if (spriteLudo.currentAnimation !== "left") {
+
+                                spriteLudo.gotoAndPlay("left", 1);
+                            }
+                        }
+
+                    }
+                    else if (xSpeed > 0) {
+                        if (!hasMoveUp && !hasMoveDown) {
+                            if (spriteLudo.currentAnimation !== "right") {
+                                console.log("DERECHA")
+                                spriteLudo.gotoAndPlay("right");
+                            }
+                        }
+
+                    }
+
+                }
+            }
         }
 
         Ludo.movement = function () {
+
+            if (autoMove) {
+                doAutoMove();
+                return;
+            }
 
             if (hasMoveUp) {
 
@@ -288,9 +380,9 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
 
 
-                if (!getCollision(spriteLudo,0,-speed) && (spriteLudo.y -speed > 0)) {
+                if (!getCollision(spriteLudo, 0, -speed) && (spriteLudo.y - speed > 0)) {
 
-                    if(!stopHeroMove) {
+                    if (!stopHeroMove) {
                         spriteLudo.y -= speed;
                         getTriggers(spriteLudo);
                     }
@@ -301,9 +393,9 @@ define(["preloadjs", "collisionDetection"], function () {
                     spriteLudo.gotoAndPlay("down", 1);
                 }
 
-                if (!getCollision(spriteLudo,0, speed) && (spriteLudo.y +speed < spriteLudo.parent.height)) {
+                if (!getCollision(spriteLudo, 0, speed) && (spriteLudo.y + speed < spriteLudo.parent.height)) {
 
-                    if(!stopHeroMove) {
+                    if (!stopHeroMove) {
                         spriteLudo.y += speed;
                         getTriggers(spriteLudo);
                     }
@@ -319,13 +411,13 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
 
 
-                if (!getCollision(spriteLudo,-speed,0)&& (spriteLudo.x -speed > 0)) {
-                    if(!stopHeroMove) {
+                if (!getCollision(spriteLudo, -speed, 0) && (spriteLudo.x - speed > 0)) {
+                    if (!stopHeroMove) {
                         spriteLudo.x -= speed;
                         getTriggers(spriteLudo);
                     }
 
-                    if(moveOnHorizontal) moveOnHorizontal(-speed);
+                    if (moveOnHorizontal) moveOnHorizontal(-speed);
 
                 }
             }
@@ -337,14 +429,13 @@ define(["preloadjs", "collisionDetection"], function () {
                 }
 
 
-                if (!getCollision(spriteLudo,speed,0) && (spriteLudo.x +speed < spriteLudo.parent.width)) {
-                    if(!stopHeroMove)
-                    {
+                if (!getCollision(spriteLudo, speed, 0) && (spriteLudo.x + speed < spriteLudo.parent.width)) {
+                    if (!stopHeroMove) {
                         spriteLudo.x += speed;
                         getTriggers(spriteLudo);
                     }
 
-                    if(moveOnHorizontal) moveOnHorizontal(speed);
+                    if (moveOnHorizontal) moveOnHorizontal(speed);
                 }
             }
 

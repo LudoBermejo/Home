@@ -15,7 +15,7 @@
  </layer>
  <layer name="Sofa" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjILBD76z0MZcKVbqm2kDNNOWBuaOguENAE3ZAZ4=
+   eJxjYBgFo2AUjILBD76z0MZcKVbqm2kDNNOWBuYOJ3CCkYHhJBCfYqSuua+B5r0B4rdUNpePiYGBH4gFmKhrriHQPCMgNgZiAOjLB5I=
   </data>
  </layer>
  <layer name="Sillas" width="22" height="22">
@@ -35,7 +35,7 @@
  </layer>
  <layer name="CollisionPersonajes" width="22" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4B2gIOJgYGTiXx5XEAbqEcHjz588qTauZ6NgWEDG+VuQgeXgGZeJsJcdPCHlYHhLyuqGLnhiAzkgW5RQHMPLj+RE6/EuJGceCUl3N2A/nNH8+MvYFj+ZsWuHh1cBqq7AsRXgfgakp5MoJlZaObKAvlySGIeQLYnjvj+BjTrOxD/AOKfRLoFBrKBZubgMFcSKC4FxNJALENGWqMlOMHIwHASiE8xUtfc10Dz3gDxWyqbywdMY/xALEBhPkMHhkDzjIDYGIgB9WAbhw==
+   eJxjYBgFo4B2gIOJgYGTiXx5XEAbqEcHjz588qTauZ6NgWEDG+VuQgeXgGZeJsJcdPCHlYHhLyuqGLnhiAzkgW5RQHMPLj+RE6/EuJGceCU23N2AfnPHEd6/gOH5mxW7HDK4DFRzBYivAvE1qPpMoJlZOMyVBYrLQeU8gLQnDnXfgGZ9B+IfQPyTCHcgg2ygmTk4zJUEiksBsTQQy5CR1mgJTjAyMJxkpL65r2lgJr0AALP1GBI=
   </data>
  </layer>
  <layer name="CollisionSillas" width="22" height="22">
@@ -44,8 +44,8 @@
   </data>
  </layer>
  <objectgroup name="Capa de Objetos 1" width="22" height="22">
-  <object name="Interests" type="OpenWeb" x="150" y="142" width="71" height="78"/>
-  <object name="Player" type="StartPlayer" x="179" y="281" width="9" height="22"/>
-  <object name="Exit" type="GotoArea" x="313" y="295" width="31" height="55"/>
+  <object name="Interests" type="OpenWeb" x="174" y="127" width="18" height="111"/>
+  <object name="Player" type="StartPlayer" x="170" y="281" width="9" height="22"/>
+  <object name="Exit" type="GotoArea" x="295" y="294" width="55" height="58"/>
  </objectgroup>
 </map>

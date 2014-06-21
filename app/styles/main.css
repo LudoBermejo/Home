@@ -47,7 +47,10 @@ body {
      bottom: 0;
      left: 0px;
      background-color: transparent;
-     width: 1040px; height:944px
+     width: 1040px; height:944px;
+
+     pointer-events: none;
+
 
  }
 

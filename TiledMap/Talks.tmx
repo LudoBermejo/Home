@@ -38,13 +38,13 @@
    eJztzE0OgjAQhuEJCy6HAidBkZMoPwvQo4AeReEivA3pwi5ouyTplzyZab5mRLb0kciAJ16R/GWvs/Uj7wlvfDw6W//l/cOMxaNz6Y+aJBY54YwUmbHrqeSx+92CvxdcUeJm7HoqlcfdO38fqNGgNXY9lc7jbkhISMgRswLiOyvM
   </data>
  </layer>
- <layer name="NoCollTable" width="22" height="22" visible="0">
+ <layer name="NoCollTable" width="22" height="22">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2B4gS1sDAxbgXgbEG8H4h1obBgNwjvZiDf3OlDtDSC+CcS3gPg2GhtGg/AdEswdBaNgFIwCEAAAYzoTWw==
   </data>
  </layer>
  <objectgroup name="Capa de Objetos 1" width="22" height="22">
-  <object name="Talks" type="OpenWeb" x="139" y="93" width="74" height="43"/>
+  <object name="Talks" type="OpenWeb" x="136" y="62" width="83" height="96"/>
   <object name="Player" type="StartPlayer" x="1" y="123" width="13" height="23"/>
   <object name="Exit" type="GotoArea" x="317" y="150" width="31" height="55"/>
  </objectgroup>

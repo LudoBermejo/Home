@@ -1,4 +1,4 @@
-define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book","world/map/areas/SecundaryArea","world/map/areas/TechnologiesArea","preloadjs", "collisionDetection"], function (Totoro, Portal, Book, SecundaryArea, TechnologiesArea) {
+define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book","world/map/areas/SecundaryArea","world/map/areas/TechnologiesArea","preloadjs", "collisionDetection", "easystart"], function (Totoro, Portal, Book, SecundaryArea, TechnologiesArea) {
         //return an object to define the "my/shirt" module.
 
         var Map = {};
@@ -13,6 +13,8 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
         var background;
         var arrayCollision = [];
 
+        var gridCollision = [];
+
         var customSprite;
 
 
@@ -22,12 +24,13 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
         var disabled;
         var lastArea = "";
         var lastWebOpen;
-
-
+        var easystar;
+        var lastPos;
 
         Map.init = function (stage, load, mg) {
 
 
+            easystar = new EasyStar.js();
             Totoro.init(load);
             Portal.init(load);
 
@@ -47,6 +50,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 if (layerData.name.indexOf("Collision") > -1) {
 
                 }
+
                 for (var y = 0; y < layerData.height; y++) {
 
                     for (var x = 0; x < layerData.width; x++) {
@@ -56,6 +60,16 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                         // layer data has single dimension array
                         var idx = x + y * layerData.width;
                         // tilemap data uses 1 as first value, EaselJS uses 0 (sub 1 to load correct tile)
+
+                        if(!gridCollision[y]) {
+                            gridCollision[y] = [];
+                        }
+
+                        if(!gridCollision[y][x]) {
+                            gridCollision[y][x] = 0;
+                        }
+
+
 
                         if (layerData.data[idx] - 1 > -1) {
                             cellBitmap.gotoAndStop(layerData.data[idx] - 1);
@@ -69,10 +83,11 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                             layer.addChildAt(cellBitmap, 0);
 
                             if (layerData.name.indexOf("Collision") > -1) {
-                                //var text = new window.createjs.Text(x + ":" + y, "10px Arial", "#ff7700"); text.x =  x * tilewidth; text.y = y* tileheight;
+                                var text = new window.createjs.Text(x + ":" + y, "10px Arial", "#ff7700"); text.x =  x * tilewidth; text.y = y* tileheight;
                                 //layer.addChildAt(text, 0);
 
                                 arrayCollision[x + ":" + y] = cellBitmap;
+                                gridCollision[y][x] = 1;
                                 cellBitmap.name = layerData.name + ":" + x + ":" + y;
 
 
@@ -152,9 +167,9 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
             }
 
 
+            this.onGotoPath = null;
 
             this.getCollision = function (obj, x, y) {
-
 
                 if(disabled) return false;
                 if (customSprite === undefined) {
@@ -177,6 +192,7 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 rect.width = Math.ceil((rect.width + x) / (wTile - 1));
                 rect.height = Math.ceil((rect.height + y) / (hTile - 1));
 
+                lastPos = { x:rect.x, y:rect.y};
 
                 var arrayCheck = [];
 
@@ -202,7 +218,6 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                     customSprite.y += y;
 
 
-                    console.log(x + ":" + y)
                     for (i = 0; i <= arrayCheck.length - 1; i++) {
                         var collision = window.ndgmr.checkPixelCollision(arrayCheck[i], customSprite, 0, true);
 
@@ -212,30 +227,25 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                             if(x > 0 && ((collision.x) > customSprite.x + obj.width/4))
                             {
-                                console.log("BIEN x")
                                 return true;
                             }
 
 
                             if(x < 0 && ((collision.x) > customSprite.x ))
                             {
-                                console.log("BIEN x")
                                 return true;
                             }
 
                             if(y > 0 && ((collision.y) > customSprite.y + obj.height/2))
                             {
-                                console.log("BIEN y")
                                 return true;
                             }
 
                             if(y < 0 && ((collision.y) > customSprite.y ))
                             {
-                                console.log("BIEN y")
                                 return true;
                             }
 
-                            console.log("SIGO")
 
                         }
 
@@ -282,6 +292,24 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
                 {
                     layerPortals.getChildAt(i).gotoAndPlay(1);
                 }
+            }
+
+            function onClickAutoMove(evt)
+            {
+                var destiny = {};
+
+                lastPos.x = Math.floor((customSprite.x) / (wTile - 1));
+                lastPos.y = Math.floor((customSprite.y) / (hTile - 1));
+
+                destiny.x = Math.floor((evt.stageX) / (wTile - 1));
+                destiny.y = Math.floor((evt.stageY) / (hTile - 1));
+
+                easystar.findPath(lastPos.x, lastPos.y, destiny.x, destiny.y, function( path ) {
+                    console.log(path);
+                    if(self.onGotoPath) self.onGotoPath(path, customSprite, wTile, hTile);
+                });
+
+                easystar.calculate();
             }
 
 
@@ -369,15 +397,20 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
                                     st.removeChild(areaContainer);
 
-
+                                    background.addEventListener("click", onClickAutoMove);
+                                    area.onGotoPath = null;
                                     self.enable();
                                 })
+
+                                area.onGotoPath = self.onGotoPath;
 
                                 area.message = self.message;
                                 areaContainer.x = stage.width / 2 - area.width * areaContainer.scaleX / 2;
                                 areaContainer.y = stage.height / 2 - area.height * areaContainer.scaleY / 2;
 
                                 area.container = areaContainer;
+
+                                background.removeEventListener("click", onClickAutoMove);
 
                                 self.onChangeArea(area);
 
@@ -438,6 +471,12 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
 
             }
 
+            easystar.setGrid(gridCollision);
+
+            easystar.setAcceptableTiles([0]);
+            easystar.enableDiagonals();
+
+
 
 
             if (layerObjects) {
@@ -458,6 +497,8 @@ define(["world/map/totoro/Totoro","world/map/portal/Portal","world/map/book/Book
             }
 
             background.cache(0, 0, mapData.tilewidth * mapData.width, mapData.tileheight * mapData.height);
+
+            background.addEventListener("click", onClickAutoMove);
 
         };
 

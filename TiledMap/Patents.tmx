@@ -38,11 +38,6 @@
    eJxjYBgFo2AUjIJRMApGwUADAAeQAAE=
   </data>
  </layer>
- <objectgroup name="Capa de Objetos 1" width="22" height="22">
-  <object name="Patents" type="OpenWeb" x="44" y="153" width="105" height="49"/>
-  <object name="Player" type="StartPlayer" x="256" y="178" width="13" height="23"/>
-  <object name="Exit" type="GotoArea" x="317" y="150" width="31" height="55"/>
- </objectgroup>
  <layer name="Collision Chairs" width="22" height="22">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIKBB2osDAzqLNQ31xNophcNzB0Fo4DaAACkMgDx
@@ -53,4 +48,9 @@
    eJztzMERABAQBME9ASAV5P9HKsjBBnE+artqvgOIyEvdgMGm+X4Xf5sd528MQGI5+H4Lf5U156/ILy4OfwX1
   </data>
  </layer>
+ <objectgroup name="Capa de Objetos 1" width="22" height="22">
+  <object name="Patents" type="OpenWeb" x="44" y="153" width="111" height="49"/>
+  <object name="Player" type="StartPlayer" x="254" y="143" width="13" height="23"/>
+  <object name="Exit" type="GotoArea" x="317" y="150" width="31" height="55"/>
+ </objectgroup>
 </map>

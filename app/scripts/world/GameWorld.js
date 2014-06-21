@@ -40,6 +40,12 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
                     Ludo.changeArea(area);
                 };
 
+                Map.onGotoPath = function(path, customSprite, w, h)
+                {
+
+                    Ludo.gotoPath(path, customSprite, w, h);
+                }
+
                 stage.update();
 
             };
@@ -95,6 +101,8 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
             stage = new window.createjs.Stage("worldCanvas");
             stage.width =  parseInt(document.getElementById("worldCanvas").getAttribute("width"));
             stage.height =  parseInt(document.getElementById("worldCanvas").getAttribute("height"));
+
+            window.createjs.Touch.enable(stage);
 
 
 
