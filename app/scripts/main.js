@@ -4,7 +4,7 @@ require.config({
     paths: {
         "components": "../bower_components",
         "modernizr": "../bower_components/modernizr/modernizr",
-        'easeljs': '../../bower_components/easeljs/lib/easeljs-0.7.1.min',
+        'easeljs': '../../bower_components/easeljs/lib/easeljs-0.8.2.min',
         'preloadjs': '../../bower_components/PreloadJS/lib/preloadjs-NEXT.min',
         "collisionDetection": "components/ndgmr.Collision",
         "easystart": "components/easystar-0.1.8.min",

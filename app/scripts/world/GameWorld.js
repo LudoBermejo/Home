@@ -152,6 +152,7 @@ define(["preloadjs", "world/ludo/Ludo", "world/map/Map", "world/messages/Message
               ];
 
             makeLoaderBar();
+            debugger;
             loader = new window.createjs.LoadQueue(false);
             loader.addEventListener("progress", handleProgress);
             loader.addEventListener("complete", handleComplete);
